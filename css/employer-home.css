@@ -134,6 +134,15 @@ nav {
   align-items: center;
   gap: 6px;
 }
+.mobile-menu a:hover,
+.mobile-menu a.active { color: var(--green); font-weight: 700; }
+.mobile-menu .btn-logout {
+  margin-top: 4px;
+  width: 100%;
+  justify-content: center;
+  border-color: var(--green);
+  color: var(--green);
+}
 .mobile-user {
   display: flex;
   align-items: center;
