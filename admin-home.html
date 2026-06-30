@@ -28,6 +28,21 @@
       <a href="admin-billing.html"><i class="ti ti-credit-card"></i>請求管理</a>
     </div>
     <div class="nav-right">
+      <!-- 通知ベル -->
+      <div class="notif-bell-wrap" id="notifBellWrap">
+        <button class="btn-bell" id="notifBellBtn" aria-label="通知">
+          <i class="ti ti-bell"></i>
+          <span class="bell-badge" id="bellBadge">0</span>
+        </button>
+        <div class="notif-dropdown" id="notifDropdown">
+          <div class="notif-dropdown-header">
+            <span class="notif-dropdown-title"><i class="ti ti-bell"></i>通知</span>
+            <button class="btn-read-all" id="btnReadAll">すべて既読にする</button>
+          </div>
+          <ul class="notif-list" id="notifList"></ul>
+          <div class="notif-dropdown-footer" id="notifFooter"></div>
+        </div>
+      </div>
       <div class="admin-badge">
         <i class="ti ti-shield-check"></i>
         <span>管理者</span>
@@ -39,6 +54,9 @@
     </div>
   </div>
 </nav>
+
+<!-- トースト通知コンテナ -->
+<div class="toast-container" id="toastContainer"></div>
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="admin-home.html" class="active"><i class="ti ti-layout-dashboard"></i>ダッシュボード</a>
