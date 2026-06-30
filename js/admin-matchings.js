@@ -178,3 +178,7 @@ function esc(s) {
 
 /* ===== 初期描画 ===== */
 applyFilters();
+/* ===== オーバーレイタップで閉じる ===== */
+document.getElementById('mobileMenu').addEventListener('click', function(e) {
+  if (e.target === this) toggleMenu();
+});

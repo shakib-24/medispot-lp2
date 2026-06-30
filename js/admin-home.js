@@ -273,3 +273,7 @@ function esc(s) {
     .replace(/&/g, '&amp;').replace(/</g, '&lt;')
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
+/* ===== オーバーレイタップで閉じる ===== */
+document.getElementById('mobileMenu').addEventListener('click', function(e) {
+  if (e.target === this) toggleMenu();
+});

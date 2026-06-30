@@ -45,12 +45,56 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:2px 
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;width:100%;height:calc(100vh - 60px);overflow-y:auto;z-index:999;flex-direction:column;background:var(--white);border-bottom:1px solid var(--line);padding:20px 24px;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  flex-direction: column;
+  background: rgba(0,0,0,.35);
+  padding: 8px 0;
+  z-index: 999;
+  gap: 0;
+}
 .mobile-menu.open{display:flex}
-.mobile-menu a{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:14px;font-weight:500}
-.mobile-menu a:hover,.mobile-menu a.active{background:var(--blue-light);color:var(--blue);font-weight:700}
-.mobile-user{display:flex;align-items:center;gap:8px;padding:10px 12px;font-size:13px;color:var(--blue-dark);font-weight:600;background:var(--blue-light);border-radius:8px;margin-top:4px}
-.mobile-menu .btn-logout{margin-top:8px;width:100%;justify-content:center;border-color:var(--blue);color:var(--blue)}
+.mobile-menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin: 6px 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+.mobile-menu a:hover,
+.mobile-menu a.active { background: var(--blue-light); color: var(--blue); font-weight: 700; }
+.mobile-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px 20px;
+  margin: 6px 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+.mobile-menu .btn-logout {
+  margin: 6px 16px;
+  width: calc(100% - 32px);
+  border-radius: 10px;
+  justify-content: center;
+}
 
 /* PAGE HEADER */
 .page-header{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:var(--white);text-align:center;padding:44px 24px 36px}

@@ -33,10 +33,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;width:100%;height:calc(100vh - 60px);overflow-y:auto;background:#fff;border-bottom:1px solid var(--line);padding:20px 24px;z-index:999;flex-direction:column;gap:14px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;width:100%;height:calc(100vh - 60px);overflow-y:auto;flex-direction:column;background:rgba(0,0,0,.35);padding:8px 0;z-index:999;gap:0}
 .mobile-menu.open{display:flex}
 body.menu-open{overflow:hidden}
-.mobile-menu a{font-size:15px;color:var(--ink);padding:8px 0;border-bottom:1px solid #f0f0f0}
+.mobile-menu a{display:flex;align-items:center;gap:8px;background:#fff;border-radius:10px;padding:14px 20px;margin:6px 16px;box-shadow:0 2px 8px rgba(0,0,0,.1);font-size:14px;font-weight:500;color:var(--ink);text-decoration:none}
+.mobile-menu a:hover,.mobile-menu a.active{background:#ffe0ee;color:var(--pink);font-weight:700}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 20px;border-radius:25px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s;gap:6px}
 .btn-pink{background:var(--pink);color:#fff;box-shadow:0 4px 12px rgba(255,107,157,.3)}
 .btn-pink:hover{background:var(--pink-dark);transform:translateY(-1px)}
@@ -394,6 +395,9 @@ const cw=document.getElementById('calc-wage'),ch=document.getElementById('calc-h
 function calc(){const w=parseInt(cw.value),h=parseInt(ch.value),d=parseInt(cd.value);document.getElementById('wage-val').textContent='¥'+w.toLocaleString();document.getElementById('hours-val').textContent=h+'時間';document.getElementById('days-val').textContent=d+'日';document.getElementById('calc-total').innerHTML='¥'+(w*h*d).toLocaleString()+'<small>（税込）</small>';}
 [cw,ch,cd].forEach(el=>el.addEventListener('input',calc));
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');document.body.classList.toggle('menu-open');}
+document.getElementById('mobileMenu').addEventListener('click', function(e) {
+  if (e.target === this) toggleMenu();
+});
 window.addEventListener('scroll',()=>{document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400);});
 </script>
 </body>

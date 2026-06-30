@@ -95,3 +95,7 @@ function showToast(msg) {
   toast.classList.add('show');
   setTimeout(function () { toast.classList.remove('show'); }, 2500);
 }
+/* ===== オーバーレイタップで閉じる ===== */
+document.getElementById('mobileMenu').addEventListener('click', function(e) {
+  if (e.target === this) toggleMenu();
+});

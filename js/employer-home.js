@@ -52,3 +52,7 @@ function toggleMenu() {
   document.getElementById('hamburger').classList.toggle('open');
   document.body.classList.toggle('menu-open');
 }
+/* ===== オーバーレイタップで閉じる ===== */
+document.getElementById('mobileMenu').addEventListener('click', function(e) {
+  if (e.target === this) toggleMenu();
+});
