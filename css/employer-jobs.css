@@ -1,0 +1,137 @@
+/* employer-jobs.css */
+:root {
+  --blue:        #4BB8E8;
+  --blue-dark:   #2A9FD4;
+  --blue-light:  #E6F6FD;
+  --blue-border: #B5D4F4;
+  --green:       #4BB8E8;
+  --green-dark:  #2A9FD4;
+  --green-light: #E6F6FD;
+  --green-border:#B5D4F4;
+  --ink:         #1a1a1a;
+  --muted:       #666;
+  --line:        #e5e7eb;
+  --bg:          #f8f9fb;
+  --white:       #fff;
+  --max-w:       900px;
+  --radius:      12px;
+  --shadow:      0 2px 12px rgba(0,0,0,.07);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:2px solid var(--blue-light);box-shadow:0 2px 12px rgba(75,184,232,.1)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;gap:24px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);flex-shrink:0}
+.logo span{font-family:'Noto Serif JP',serif;font-weight:700;font-size:18px;line-height:1}
+.logo .m{color:var(--blue)}.logo .s{color:var(--green)}
+.logo-sub{font-size:10px;color:var(--muted);letter-spacing:.02em;font-weight:400;font-family:'Noto Sans JP',sans-serif;white-space:nowrap}
+.nav-links{display:flex;gap:20px;font-size:13px;font-weight:500;color:#555}
+.nav-links a{display:flex;align-items:center;gap:4px;text-decoration:none;transition:color .2s}
+.nav-links a i{font-size:15px}
+.nav-links a:hover,.nav-links a.active{color:var(--blue);font-weight:700}
+.nav-right{display:flex;align-items:center;gap:12px;margin-left:auto}
+.employer-badge{display:flex;align-items:center;gap:6px;background:var(--blue);color:var(--white);font-size:12px;font-weight:700;padding:5px 13px 5px 8px;border-radius:20px;white-space:nowrap;margin-right:4px}
+.employer-badge i{font-size:15px}
+.nav-right-link{display:flex;align-items:center;gap:4px;padding:6px 11px;border-radius:8px;font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;transition:background .15s,color .15s;white-space:nowrap}
+.nav-right-link i{font-size:15px}
+.nav-right-link:hover{background:var(--blue-light);color:var(--blue)}
+.nav-right-link.active{background:var(--blue-light);color:var(--blue);font-weight:700}
+.btn-logout{display:inline-flex;align-items:center;gap:5px;padding:6px 16px;border-radius:25px;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--white);color:var(--muted);transition:all .2s;font-family:'Noto Sans JP',sans-serif;white-space:nowrap}
+.btn-logout:hover{border-color:var(--blue);color:var(--blue)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .25s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;flex-direction:column;background:var(--white);border-bottom:1px solid var(--line);padding:8px 16px 16px;gap:4px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:14px;font-weight:500}
+.mobile-menu a:hover,.mobile-menu a.active{background:var(--blue-light);color:var(--blue)}
+.mobile-user{display:flex;align-items:center;gap:8px;padding:10px 12px;font-size:13px;color:var(--blue-dark);font-weight:600;background:var(--blue-light);border-radius:8px;margin-top:4px}
+
+/* PAGE HEADER */
+.page-header{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:var(--white);padding:32px 24px 28px}
+.page-header-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.page-header-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:.12em;opacity:.85;margin-bottom:6px}
+.page-header h1{font-family:'Noto Serif JP',serif;font-size:clamp(20px,4vw,26px);font-weight:700;letter-spacing:.03em}
+.btn-new-job{display:inline-flex;align-items:center;gap:6px;padding:11px 20px;background:linear-gradient(135deg,var(--green) 0%,var(--green-dark) 100%);color:var(--white);border-radius:10px;text-decoration:none;font-size:14px;font-weight:700;box-shadow:0 3px 12px rgba(75,184,232,.35);transition:transform .15s;white-space:nowrap;font-family:inherit}
+.btn-new-job:hover{transform:translateY(-2px)}
+.btn-new-job i{font-size:16px}
+
+/* MAIN */
+main{padding:24px 16px 48px}
+.wrap{max-width:var(--max-w);margin:0 auto}
+.toolbar{display:flex;align-items:center;margin-bottom:16px}
+.toolbar-count{font-size:13px;color:var(--muted);font-weight:500}
+
+/* JOB LIST */
+.job-list{display:flex;flex-direction:column;gap:12px}
+
+/* JOB CARD */
+.job-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);transition:box-shadow .2s,border-color .2s}
+.job-card:hover{box-shadow:0 4px 20px rgba(75,184,232,.12);border-color:var(--blue-border)}
+.job-card.ended{opacity:.55;filter:grayscale(.4)}
+
+.job-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.job-badges{display:flex;flex-wrap:wrap;gap:5px}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+.badge-blue  {background:var(--blue-light);color:var(--blue-dark);border:1px solid var(--blue-border)}
+.badge-teal  {background:#d1fae5;color:#065f46;border:1px solid #6ee7b7}
+.badge-orange{background:#fff7ed;color:#c2410c;border:1px solid #fed7aa}
+.badge-purple{background:#f3e8ff;color:#6b21a8;border:1px solid #d8b4fe}
+.badge-gray  {background:#f3f4f6;color:var(--muted);border:1px solid var(--line)}
+.badge-pink  {background:#ffe8f2;color:#c2185b;border:1px solid #f8bbd0}
+.badge-emp-full    {background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe}
+.badge-emp-part    {background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+.badge-emp-spot    {background:#fff7ed;color:#c2410c;border:1px solid #fed7aa}
+.badge-emp-contract{background:#f9fafb;color:#374151;border:1px solid #e5e7eb}
+.badge-active  {background:#dcfce7;color:#15803d;border:1px solid #86efac}
+.badge-ended   {background:#f3f4f6;color:var(--muted);border:1px solid var(--line)}
+
+.job-title{font-size:15px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:4px}
+.job-salary{font-size:14px;font-weight:700;color:var(--blue-dark);margin-bottom:8px}
+
+.job-meta{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:10px}
+.job-meta-item{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
+.job-meta-item i{font-size:13px}
+
+/* Application stats */
+.app-stats{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.stat-total{font-size:13px;font-weight:600;color:var(--ink)}
+.stat-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700}
+.stat-reviewing{background:#fef9c3;color:#854d0e;border:1px solid #fde68a}
+.stat-matched  {background:#dcfce7;color:#15803d;border:1px solid #86efac}
+.stat-zero     {color:var(--muted);font-size:12px}
+
+/* Card actions */
+.job-card-actions{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:12px}
+.btn-applicants{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;background:var(--blue);color:var(--white);border:none;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;font-family:inherit;transition:background .15s}
+.btn-applicants:hover{background:var(--blue-dark)}
+.btn-applicants i{font-size:15px}
+.btn-end{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;background:var(--white);color:var(--muted);border:1px solid var(--line);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s,color .15s,border-color .15s}
+.btn-end:hover{background:#fef2f2;color:#dc2626;border-color:#fca5a5}
+.btn-end:disabled{opacity:.5;cursor:not-allowed}
+
+/* FOOTER */
+footer{background:#111827;color:rgba(255,255,255,.7);padding:40px 24px}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:32px}
+.footer-brand .footer-logo{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;margin-bottom:10px}
+.footer-brand .footer-logo .m{color:var(--blue)}.footer-brand .footer-logo .s{color:var(--green)}
+.footer-brand p{font-size:13px;line-height:1.8}
+.footer-links h4{font-size:13px;font-weight:700;color:var(--white);margin-bottom:12px}
+.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links li{font-size:13px;cursor:pointer}
+.footer-bottom{background:#0d1117;text-align:center;padding:14px;font-size:11px;color:rgba(255,255,255,.4)}
+
+@media(max-width:768px){
+  .nav-links,.nav-right{display:none}
+  .hamburger{display:flex;margin-left:auto}
+  .page-header-inner{flex-direction:column;align-items:flex-start}
+  .job-card-actions{flex-direction:column}
+  .btn-applicants,.btn-end{justify-content:center;width:100%}
+  .footer-inner{grid-template-columns:1fr;gap:20px}
+}

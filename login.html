@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot - ログイン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+:root{
+  --pink:#FF6B9D;--pink-dark:#E5508A;--pink-light:#FFE8F2;--pink-border:#FFB3D1;
+  --blue:#4BB8E8;--blue-dark:#2A9FD4;--blue-light:#E6F6FD;--blue-border:#B5D4F4;
+  --ink:#1a1a1a;--muted:#666;--line:#e5e7eb;--white:#fff;--max-w:960px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#f8f9ff;line-height:1.7;min-height:100vh;display:flex;flex-direction:column}
+a{text-decoration:none;color:inherit}
+ 
+/* NAV */
+nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:700}
+.logo .m{color:var(--pink)}.logo .s{color:var(--blue)}
+.logo-sub{font-size:10px;color:#aaa;margin-left:4px}
+.nav-back{font-size:13px;color:var(--pink-dark);display:flex;align-items:center;gap:4px;font-weight:600}
+ 
+/* PAGE HEADER */
+.page-header{background:linear-gradient(135deg,var(--pink) 0%,var(--blue) 100%);padding:40px 24px;text-align:center;position:relative;overflow:hidden}
+.page-header::after{content:'';position:absolute;right:8%;top:50%;transform:translateY(-50%);width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 60%)}
+.page-header-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.9);margin-bottom:4px}
+.page-header h1{font-family:'Noto Serif JP',serif;font-size:24px;font-weight:600;color:#fff}
+.page-header p{font-size:13px;color:rgba(255,255,255,.88);margin-top:8px}
+ 
+/* MAIN */
+main{flex:1;max-width:440px;width:100%;margin:40px auto 48px;padding:0 24px}
+ 
+/* FORM CARD */
+.form-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,.05)}
+.form-group{margin-bottom:16px}
+.form-group label{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;display:block}
+.form-group input{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:8px;font-size:13px;color:var(--ink);background:#fafafa;outline:none;font-family:'Noto Sans JP',sans-serif;transition:all .2s}
+.form-group input:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,107,157,.1)}
+.btn-submit{width:100%;padding:13px;border:none;border-radius:30px;background:linear-gradient(135deg,var(--pink),var(--blue));color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .2s;box-shadow:0 4px 14px rgba(255,107,157,.3);margin-top:8px}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,107,157,.4)}
+.form-link{text-align:center;font-size:12px;color:var(--muted);margin-top:16px}
+.form-link a{color:var(--pink-dark);font-weight:700}
+ 
+/* DEMO CARD */
+.demo-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.04);margin-top:16px}
+.demo-title{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.demo-title i{color:var(--pink)}
+.demo-desc{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6}
+.demo-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.demo-btn{border-radius:10px;padding:14px 10px;text-align:center;cursor:pointer;font-family:'Noto Sans JP',sans-serif;border:none;transition:all .2s}
+.demo-btn-seeker{background:var(--pink-light);border:1.5px solid var(--pink-border)}
+.demo-btn-seeker:hover{border-color:var(--pink);background:#FFD6E7}
+.demo-btn-employer{background:var(--blue-light);border:1.5px solid var(--blue-border)}
+.demo-btn-employer:hover{border-color:var(--blue);background:#C8E8F8}
+.demo-btn strong{display:block;font-size:13px;font-weight:700}
+.demo-btn-seeker strong{color:var(--pink-dark)}
+.demo-btn-employer strong{color:var(--blue-dark)}
+.demo-btn small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+ 
+footer{background:#1a1a2e;padding:20px 24px;text-align:center;margin-top:auto}
+.footer-logo{font-size:16px;font-weight:700}
+.footer-logo .m{color:var(--pink)}.footer-logo .s{color:var(--blue)}
+footer p{font-size:11px;color:#888;margin-top:4px}
+</style>
+</head>
+<body>
+ 
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <a href="index.html" class="nav-back"><i class="ti ti-arrow-left"></i>トップへ戻る</a>
+  </div>
+</nav>
+ 
+<div class="page-header">
+  <p class="page-header-label">Welcome back</p>
+  <h1>ログイン</h1>
+  <p>ログイン後、権限に応じたマイページへ移動します。</p>
+</div>
+ 
+<main>
+  <div class="form-card">
+    <div class="form-group">
+      <label>メールアドレス</label>
+      <input type="email" placeholder="例）example@example.com">
+    </div>
+    <div class="form-group">
+      <label>パスワード</label>
+      <input type="password" placeholder="パスワードを入力">
+    </div>
+    <button class="btn-submit">ログイン</button>
+    <p class="form-link">アカウントをお持ちでない方は <a href="register.html">新規会員登録</a></p>
+  </div>
+ 
+  <div class="demo-card">
+    <p class="demo-title"><i class="ti ti-key"></i>デモアカウントでログイン</p>
+    <p class="demo-desc">プロトタイプ確認用のアカウントです。ワンクリックでログインできます。</p>
+    <div class="demo-btns">
+      <button class="demo-btn demo-btn-seeker">
+        <strong>求職者</strong>
+        <small>佐藤 花子／看護師</small>
+      </button>
+      <button class="demo-btn demo-btn-employer">
+        <strong>求人者</strong>
+        <small>田中総合クリニック</small>
+      </button>
+    </div>
+  </div>
+</main>
+ 
+<footer>
+  <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+  <p>© 2026 MediSpot. All rights reserved.</p>
+</footer>
+
+<script>
+document.querySelector('.demo-btn-seeker').addEventListener('click', function () {
+  localStorage.setItem('medispot_user', JSON.stringify({ name: '佐藤 花子', role: 'seeker' }));
+  window.location.href = 'seeker-home.html';
+});
+
+document.querySelector('.demo-btn-employer').addEventListener('click', function () {
+  localStorage.setItem('medispot_user', JSON.stringify({ name: '田中総合クリニック', role: 'employer' }));
+  window.location.href = 'employer-home.html';
+});
+</script>
+</body>
+</html>

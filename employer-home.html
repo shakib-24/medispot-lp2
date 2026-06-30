@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot - 求人者ホーム</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/employer-home.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="employer-home.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <div class="nav-links">
+      <a href="employer-home.html" class="active"><i class="ti ti-layout-dashboard"></i>マイページ</a>
+      <a href="employer-job-new.html"><i class="ti ti-plus"></i>求人作成</a>
+      <a href="employer-jobs.html"><i class="ti ti-briefcase"></i>掲載求人管理</a>
+    </div>
+    <div class="nav-right">
+      <div class="employer-badge">
+        <i class="ti ti-building-hospital"></i>
+        <span>求人者：田中総合クリニック</span>
+      </div>
+      <button class="btn-logout" id="logoutBtn"><i class="ti ti-logout"></i>ログアウト</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-user"><i class="ti ti-building-hospital"></i><span>田中総合クリニック</span></div>
+  <a href="employer-home.html" class="active"><i class="ti ti-layout-dashboard"></i>マイページ</a>
+  <a href="employer-job-new.html"><i class="ti ti-plus"></i>求人作成</a>
+  <a href="employer-jobs.html"><i class="ti ti-briefcase"></i>掲載求人管理</a>
+  <button class="btn-logout" id="logoutBtnMobile"><i class="ti ti-logout"></i>ログアウト</button>
+</div>
+
+<!-- Welcome Section -->
+<div class="welcome-section">
+  <div class="wrap">
+    <div class="welcome-inner">
+      <div>
+        <p class="welcome-label">Dashboard</p>
+        <h1 class="welcome-title">ようこそ、<span id="userNameWelcome">田中総合クリニック</span>様</h1>
+        <p class="welcome-date"><i class="ti ti-calendar"></i><span id="todayDate"></span></p>
+      </div>
+      <div class="welcome-badge">
+        <i class="ti ti-building-hospital"></i>
+        <span>求人者ダッシュボード</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Matching Notification Banner -->
+<div class="match-banner-section">
+  <div class="wrap">
+    <div class="match-banner-list">
+
+      <div class="match-banner-item">
+        <div class="match-banner-icon"><i class="ti ti-confetti"></i></div>
+        <div class="match-banner-body">
+          <p class="match-banner-label">🎉 マッチング成立</p>
+          <p class="match-banner-text">「理学療法士（PT）（整形外科クリニック・新設リハ室）」で<strong>田中 太郎</strong>さんとのマッチングが成立しました！</p>
+        </div>
+        <div class="match-banner-actions">
+          <button class="btn-match-check"><i class="ti ti-bell"></i>通知を確認</button>
+          <a href="#" class="btn-match-chat"><i class="ti ti-message-circle"></i>チャットルームへ</a>
+        </div>
+      </div>
+
+      <div class="match-banner-item">
+        <div class="match-banner-icon"><i class="ti ti-confetti"></i></div>
+        <div class="match-banner-body">
+          <p class="match-banner-label">🎉 マッチング成立</p>
+          <p class="match-banner-text">「放射線技師（健診・一般撮影／土日休み）」で<strong>鈴木 一郎</strong>さんとのマッチングが成立しました！</p>
+        </div>
+        <div class="match-banner-actions">
+          <button class="btn-match-check"><i class="ti ti-bell"></i>通知を確認</button>
+          <a href="#" class="btn-match-chat"><i class="ti ti-message-circle"></i>チャットルームへ</a>
+        </div>
+      </div>
+
+      <div class="match-banner-item match-banner-pending">
+        <div class="match-banner-icon match-banner-icon-pending"><i class="ti ti-user-check"></i></div>
+        <div class="match-banner-body">
+          <p class="match-banner-label match-banner-label-pending">⏳ 選考待ち</p>
+          <p class="match-banner-text">「看護師（夜間病棟）」に新しい応募が<strong>2件</strong>届いています。選考を進めてください。</p>
+        </div>
+        <div class="match-banner-actions">
+          <a href="employer-applicants.html?jobId=job-1" class="btn-match-check"><i class="ti ti-users"></i>応募者を確認</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="summary-section">
+  <div class="wrap">
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="summary-icon color-green">
+          <i class="ti ti-briefcase"></i>
+        </div>
+        <div class="summary-body">
+          <p class="summary-label">掲載中求人数</p>
+          <p class="summary-num">3<span class="summary-unit">件</span></p>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon color-coral">
+          <i class="ti ti-users"></i>
+        </div>
+        <div class="summary-body">
+          <p class="summary-label">選考中応募者数</p>
+          <p class="summary-num">7<span class="summary-unit">名</span></p>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon color-green-dark">
+          <i class="ti ti-heart-handshake"></i>
+        </div>
+        <div class="summary-body">
+          <p class="summary-label">マッチング成立数</p>
+          <p class="summary-num">12<span class="summary-unit">件</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notifications -->
+<div class="section">
+  <div class="wrap">
+    <h2 class="section-title"><i class="ti ti-bell"></i>通知</h2>
+    <div class="notifications">
+      <div class="notif-item notif-coral">
+        <div class="notif-icon">
+          <i class="ti ti-user-check"></i>
+        </div>
+        <div class="notif-body">
+          <p class="notif-title">選考待ちの応募があります</p>
+          <p class="notif-desc">看護師（夜間病棟）求人に新しい応募が2件届いています。確認して選考を進めてください。</p>
+        </div>
+        <a href="#" class="notif-action">確認する</a>
+      </div>
+      <div class="notif-item notif-green">
+        <div class="notif-icon">
+          <i class="ti ti-heart-handshake"></i>
+        </div>
+        <div class="notif-body">
+          <p class="notif-title">マッチングが成立しました</p>
+          <p class="notif-desc">臨床検査技師（スポット）でマッチングが成立しました。チャットで勤務の詳細を確認してください。</p>
+        </div>
+        <a href="#" class="notif-action">チャットへ</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="section section-gray">
+  <div class="wrap">
+    <h2 class="section-title"><i class="ti ti-rocket"></i>クイックアクション</h2>
+    <div class="actions-grid">
+      <a href="employer-job-new.html" class="action-card">
+        <div class="action-icon">
+          <i class="ti ti-plus"></i>
+        </div>
+        <p class="action-label">求人を作成する</p>
+      </a>
+      <a href="employer-jobs.html" class="action-card">
+        <div class="action-icon">
+          <i class="ti ti-list"></i>
+        </div>
+        <p class="action-label">掲載求人を管理する</p>
+      </a>
+      <a href="employer-applicants.html" class="action-card">
+        <div class="action-icon">
+          <i class="ti ti-users"></i>
+        </div>
+        <p class="action-label">応募者一覧を見る</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+      <p>医療資格者と医療機関をつなぐ<br>スポット求人マッチングサービス</p>
+    </div>
+    <div class="footer-links">
+      <h4>求職者の方へ</h4>
+      <ul>
+        <li>求人を探す</li>
+        <li>プロフィール登録</li>
+        <li>ご利用の流れ</li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>求人者の方へ</h4>
+      <ul>
+        <li>求人を掲載する</li>
+        <li>料金について</li>
+        <li>ご利用の流れ</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 MediSpot（メディスポット）. All rights reserved.</p></div>
+
+<script src="js/employer-home.js"></script>
+</body>
+</html>

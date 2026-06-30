@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot - プロフィール登録</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/seeker-profile.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <div class="nav-links">
+      <a href="seeker-home.html"><i class="ti ti-home"></i>マイページ</a>
+      <a href="seeker-profile.html" class="active"><i class="ti ti-user-edit"></i>プロフィール</a>
+      <a href="seeker-resume.html"><i class="ti ti-file-cv"></i>履歴書</a>
+      <a href="seeker-jobs.html"><i class="ti ti-search"></i>求人検索</a>
+    </div>
+    <div class="nav-right">
+      <div class="user-badge">
+        <div class="user-avatar"><i class="ti ti-user"></i></div>
+        <span id="userName">読み込み中...</span>
+      </div>
+      <button class="btn-logout" id="logoutBtn"><i class="ti ti-logout"></i>ログアウト</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="seeker-home.html"><i class="ti ti-home"></i>マイページ</a>
+  <a href="seeker-profile.html" class="active"><i class="ti ti-user-edit"></i>プロフィール</a>
+  <a href="seeker-resume.html"><i class="ti ti-file-cv"></i>履歴書</a>
+  <a href="seeker-jobs.html"><i class="ti ti-search"></i>求人検索</a>
+  <div class="mobile-user"><i class="ti ti-user-circle"></i><span id="userNameMobile">読み込み中...</span></div>
+  <button class="btn-logout" id="logoutBtnMobile"><i class="ti ti-logout"></i>ログアウト</button>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <p class="page-header-label">Profile</p>
+  <h1>スキル・プロフィール登録</h1>
+  <p>保有資格やスキルを登録して、あなたにぴったりの求人に応募しましょう</p>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <i class="ti ti-circle-check"></i>
+  <span id="toastMsg">プロフィールを保存しました</span>
+</div>
+
+<main>
+  <div class="wrap">
+    <form id="profileForm" novalidate>
+
+      <!-- 01 保有資格 -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">01</span>
+          <div>
+            <h2 class="form-section-title">保有資格・職種</h2>
+            <p class="form-section-desc">メインの保有資格を選択してください</p>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">保有資格（職種）<span class="req">必須</span></label>
+            <div class="select-wrap">
+              <select id="qualification" required>
+                <option value="">職種を選択してください</option>
+                <option value="看護師">看護師</option>
+                <option value="保健師">保健師</option>
+                <option value="助産師">助産師</option>
+                <option value="臨床検査技師">臨床検査技師</option>
+                <option value="放射線技師">放射線技師</option>
+                <option value="PT（理学療法士）">PT（理学療法士）</option>
+                <option value="OT（作業療法士）">OT（作業療法士）</option>
+                <option value="ST（言語聴覚士）">ST（言語聴覚士）</option>
+                <option value="ヘルパー">ヘルパー</option>
+              </select>
+              <i class="ti ti-chevron-down select-icon"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">資格名称（詳細）</label>
+            <input type="text" id="qualificationDetail"
+              placeholder="例）正看護師免許・精神科認定看護師 など">
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 基本情報 -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">02</span>
+          <div>
+            <h2 class="form-section-title">基本情報</h2>
+            <p class="form-section-desc">生年月日と実務経験年数を入力してください</p>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">生年月日<span class="req">必須</span></label>
+            <input type="date" id="birthdate" required>
+            <p class="age-display" id="ageDisplay"></p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">実務経験年数</label>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="experience" value="1年未満"><span>1年未満</span></label>
+              <label class="radio-pill"><input type="radio" name="experience" value="1〜3年"><span>1〜3年</span></label>
+              <label class="radio-pill"><input type="radio" name="experience" value="4〜6年"><span>4〜6年</span></label>
+              <label class="radio-pill"><input type="radio" name="experience" value="7〜9年"><span>7〜9年</span></label>
+              <label class="radio-pill"><input type="radio" name="experience" value="10〜15年"><span>10〜15年</span></label>
+              <label class="radio-pill"><input type="radio" name="experience" value="16年以上"><span>16年以上</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 スキル -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">03</span>
+          <div>
+            <h2 class="form-section-title">スキル・経験</h2>
+            <p class="form-section-desc">経験のある分野を選択してください（複数可）</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="skills-hint" id="skillsHint">
+            <i class="ti ti-info-circle"></i>保有資格（職種）を選択するとスキル項目が表示されます
+          </div>
+          <div class="checkbox-grid" id="skillsGrid"></div>
+        </div>
+      </div>
+
+      <!-- 04 希望条件 -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">04</span>
+          <div>
+            <h2 class="form-section-title">希望条件</h2>
+            <p class="form-section-desc">希望する雇用形態を選択してください</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">希望雇用形態</label>
+          <div class="radio-group">
+            <label class="radio-pill"><input type="radio" name="employmentType" value="こだわらない"><span>こだわらない</span></label>
+            <label class="radio-pill"><input type="radio" name="employmentType" value="スポット（単発）"><span>スポット（単発）</span></label>
+            <label class="radio-pill"><input type="radio" name="employmentType" value="業務委託"><span>業務委託</span></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 居住地 -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">05</span>
+          <div>
+            <h2 class="form-section-title">居住地</h2>
+            <p class="form-section-desc">郵便番号を入力すると都道府県・市区町村が自動で表示されます</p>
+          </div>
+        </div>
+
+        <div class="address-block">
+          <div class="form-group">
+            <label class="form-label">郵便番号</label>
+            <div class="postal-row">
+              <span class="postal-mark">〒</span>
+              <input type="text" id="postalCode" placeholder="1234567" maxlength="8" inputmode="numeric">
+              <button type="button" class="btn-postal" id="postalSearchBtn">
+                <i class="ti ti-map-pin"></i>住所を検索
+              </button>
+            </div>
+            <div class="address-result" id="addressResult"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">番地・建物名</label>
+            <input type="text" id="streetAddress"
+              placeholder="例）1-2-3 ○○マンション101号室">
+            <p class="form-hint">都道府県・市区町村は上の検索で自動入力されます</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 自己PR -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">06</span>
+          <div>
+            <h2 class="form-section-title">自己PR</h2>
+            <p class="form-section-desc">経験・強み・働く上で大切にしていることを自由に記述してください</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <textarea id="selfPR" rows="6" maxlength="500"
+            placeholder="例）ICUでの5年間の経験を活かし、急変対応やチームコミュニケーションを得意としています。スポット勤務でも即戦力として貢献できます。"></textarea>
+          <p class="char-count"><span id="charCount">0</span> / 500文字</p>
+        </div>
+      </div>
+
+      <!-- 07 資格証アップロード -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">07</span>
+          <div>
+            <h2 class="form-section-title">資格証画像アップロード</h2>
+            <p class="form-section-desc">資格証・免許証の画像をアップロードしてください（複数可）</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="upload-area" id="uploadArea">
+            <input type="file" id="fileInput" multiple accept="image/*,.pdf" hidden>
+            <i class="ti ti-cloud-upload upload-icon"></i>
+            <p class="upload-text">クリックまたはドラッグ＆ドロップでアップロード</p>
+            <p class="upload-hint">JPG・PNG・PDF 対応</p>
+          </div>
+          <div class="uploaded-list" id="uploadedList"></div>
+        </div>
+      </div>
+
+      <!-- Save -->
+      <div class="save-area">
+        <button type="submit" class="btn-save">
+          <i class="ti ti-device-floppy"></i>プロフィールを保存する
+        </button>
+        <p class="save-note">※ 入力内容はお使いのブラウザに保存されます</p>
+      </div>
+
+    </form>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+      <p>医療資格者と医療機関をつなぐ<br>スポット求人マッチングサービス</p>
+    </div>
+    <div class="footer-links">
+      <h4>求職者の方へ</h4>
+      <ul><li>求人を探す</li><li>プロフィール登録</li><li>ご利用の流れ</li></ul>
+    </div>
+    <div class="footer-links">
+      <h4>求人者の方へ</h4>
+      <ul><li>求人を掲載する</li><li>料金について</li><li>ご利用の流れ</li></ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 MediSpot（メディスポット）. All rights reserved.</p></div>
+
+<script src="js/seeker-profile.js"></script>
+</body>
+</html>

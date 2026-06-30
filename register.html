@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot - 新規会員登録</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+:root{
+  --pink:#FF6B9D;--pink-dark:#E5508A;--pink-light:#FFE8F2;--pink-border:#FFB3D1;
+  --blue:#4BB8E8;--blue-dark:#2A9FD4;--blue-light:#E6F6FD;--blue-border:#B5D4F4;
+  --ink:#1a1a1a;--muted:#666;--line:#e5e7eb;--white:#fff;--max-w:960px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#f8f9ff;line-height:1.7;min-height:100vh;display:flex;flex-direction:column}
+a{text-decoration:none;color:inherit}
+ 
+nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:700}
+.logo .m{color:var(--pink)}.logo .s{color:var(--blue)}
+.logo-sub{font-size:10px;color:#aaa;margin-left:4px}
+.nav-back{font-size:13px;color:var(--pink-dark);display:flex;align-items:center;gap:4px;font-weight:600}
+ 
+.page-header{background:linear-gradient(135deg,var(--pink) 0%,var(--blue) 100%);padding:40px 24px;text-align:center;position:relative;overflow:hidden}
+.page-header::after{content:'';position:absolute;right:8%;top:50%;transform:translateY(-50%);width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 60%)}
+.page-header-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.9);margin-bottom:4px}
+.page-header h1{font-family:'Noto Serif JP',serif;font-size:24px;font-weight:600;color:#fff}
+.page-header p{font-size:13px;color:rgba(255,255,255,.88);margin-top:8px}
+ 
+main{flex:1;max-width:520px;width:100%;margin:40px auto 48px;padding:0 24px}
+ 
+/* ROLE SELECT */
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.role-btn{border-radius:12px;padding:20px 16px;text-align:center;cursor:pointer;font-family:'Noto Sans JP',sans-serif;border:2px solid var(--line);background:#fff;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:8px}
+.role-btn i{font-size:28px}
+.role-btn strong{font-size:14px;font-weight:700;color:var(--ink)}
+.role-btn small{font-size:11px;color:var(--muted);line-height:1.5}
+.role-btn.seeker-active{border-color:var(--pink);background:var(--pink-light)}
+.role-btn.seeker-active i{color:var(--pink)}
+.role-btn.employer-active{border-color:var(--blue);background:var(--blue-light)}
+.role-btn.employer-active i{color:var(--blue)}
+.role-btn:hover{transform:translateY(-2px)}
+ 
+/* FORM */
+.form-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,.05)}
+.form-group{margin-bottom:16px}
+.form-group label{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;display:block}
+.form-group input,.form-group select{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:8px;font-size:13px;color:var(--ink);background:#fafafa;outline:none;font-family:'Noto Sans JP',sans-serif;transition:all .2s}
+.form-group input:focus,.form-group select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,107,157,.1)}
+.req{color:var(--pink);font-size:10px;margin-left:4px;font-weight:700}
+.form-divider{border:none;border-top:1px solid var(--line);margin:20px 0}
+.form-section-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.form-section-title i{color:var(--pink)}
+ 
+/* SEEKER/EMPLOYER FIELDS */
+.seeker-fields{display:block}
+.employer-fields{display:none}
+ 
+.btn-submit{width:100%;padding:13px;border:none;border-radius:30px;background:linear-gradient(135deg,var(--pink),var(--blue));color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .2s;box-shadow:0 4px 14px rgba(255,107,157,.3);margin-top:8px}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,107,157,.4)}
+.form-note{font-size:11px;color:var(--muted);text-align:center;margin-top:10px;line-height:1.6}
+.form-link{text-align:center;font-size:12px;color:var(--muted);margin-top:14px}
+.form-link a{color:var(--pink-dark);font-weight:700}
+ 
+@media(max-width:520px){
+  .role-grid{grid-template-columns:1fr}
+  main{padding:0 16px;margin:24px auto 40px}
+  .form-card{padding:24px 16px}
+}
+footer{background:#1a1a2e;padding:20px 24px;text-align:center;margin-top:auto}
+.footer-logo{font-size:16px;font-weight:700}
+.footer-logo .m{color:var(--pink)}.footer-logo .s{color:var(--blue)}
+footer p{font-size:11px;color:#888;margin-top:4px}
+</style>
+</head>
+<body>
+ 
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <a href="index.html" class="nav-back"><i class="ti ti-arrow-left"></i>トップへ戻る</a>
+  </div>
+</nav>
+ 
+<div class="page-header">
+  <p class="page-header-label">Join Medispot</p>
+  <h1>新規会員登録</h1>
+  <p>登録種別を選択して、必要事項を入力してください。</p>
+</div>
+ 
+<main>
+  <!-- ROLE SELECT -->
+  <div class="role-grid">
+    <button class="role-btn seeker-active" id="seekerBtn" onclick="selectRole('seeker')">
+      <i class="ti ti-stethoscope" style="color:var(--pink)"></i>
+      <strong>求職者として登録</strong>
+      <small>医療資格者（看護師・検査技師・リハビリ職 など）</small>
+    </button>
+    <button class="role-btn" id="employerBtn" onclick="selectRole('employer')">
+      <i class="ti ti-building-hospital" style="color:var(--muted)"></i>
+      <strong>求人者として登録</strong>
+      <small>医療機関（病院・クリニック・薬局 など）</small>
+    </button>
+  </div>
+ 
+  <div class="form-card">
+ 
+    <!-- 共通項目 -->
+    <p class="form-section-title"><i class="ti ti-user"></i>基本情報</p>
+    <div class="form-group">
+      <label>お名前（ご担当者名）<span class="req">必須</span></label>
+      <input type="text" placeholder="例）佐藤 花子">
+    </div>
+ 
+    <!-- 求職者のみ -->
+    <div class="seeker-fields" id="seekerFields">
+      <div class="form-group">
+        <label>保有資格（職種）<span class="req">必須</span></label>
+        <select>
+          <option>職種を選択</option>
+          <option>看護師</option>
+          <option>臨床検査技師</option>
+          <option>放射線技師</option>
+          <option>理学療法士（PT）</option>
+          <option>作業療法士（OT）</option>
+          <option>言語聴覚士（ST）</option>
+          <option>ヘルパー</option>
+        </select>
+      </div>
+    </div>
+ 
+    <!-- 求人者のみ -->
+    <div class="employer-fields" id="employerFields">
+      <div class="form-group">
+        <label>医療機関名<span class="req">必須</span></label>
+        <input type="text" placeholder="例）田中総合クリニック">
+      </div>
+      <div class="form-group">
+        <label>施設区分</label>
+        <select>
+          <option>選択してください</option>
+          <option>病院</option>
+          <option>クリニック（無床）</option>
+          <option>クリニック（有床）</option>
+          <option>調剤薬局</option>
+          <option>介護・福祉施設</option>
+          <option>健診センター</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>所在地</label>
+        <input type="text" placeholder="例）東京都新宿区〇〇1-2-3">
+      </div>
+    </div>
+ 
+    <hr class="form-divider">
+ 
+    <p class="form-section-title"><i class="ti ti-lock"></i>アカウント情報</p>
+    <div class="form-group">
+      <label>メールアドレス<span class="req">必須</span></label>
+      <input type="email" placeholder="例）example@example.com">
+    </div>
+    <div class="form-group">
+      <label>パスワード<span class="req">必須</span></label>
+      <input type="password" placeholder="8文字以上">
+    </div>
+ 
+    <button class="btn-submit" id="submitBtn">求職者として登録する</button>
+    <p class="form-note">※プロトタイプのため、実際のパスワードは使用しないでください。</p>
+    <p class="form-link">すでにアカウントをお持ちの方は <a href="login.html">ログイン</a></p>
+  </div>
+</main>
+ 
+<footer>
+  <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+  <p>© 2026 MediSpot. All rights reserved.</p>
+</footer>
+ 
+<script>
+function selectRole(role) {
+  const seekerBtn = document.getElementById('seekerBtn');
+  const employerBtn = document.getElementById('employerBtn');
+  const seekerFields = document.getElementById('seekerFields');
+  const employerFields = document.getElementById('employerFields');
+  const submitBtn = document.getElementById('submitBtn');
+  const seekerIcon = seekerBtn.querySelector('i');
+  const employerIcon = employerBtn.querySelector('i');
+ 
+  if(role === 'seeker') {
+    seekerBtn.className = 'role-btn seeker-active';
+    employerBtn.className = 'role-btn';
+    seekerIcon.style.color = 'var(--pink)';
+    employerIcon.style.color = 'var(--muted)';
+    seekerFields.style.display = 'block';
+    employerFields.style.display = 'none';
+    submitBtn.textContent = '求職者として登録する';
+  } else {
+    employerBtn.className = 'role-btn employer-active';
+    seekerBtn.className = 'role-btn';
+    employerIcon.style.color = 'var(--blue)';
+    seekerIcon.style.color = 'var(--muted)';
+    seekerFields.style.display = 'none';
+    employerFields.style.display = 'block';
+    submitBtn.textContent = '求人者として登録する';
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot - 求人検索</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/seeker-jobs.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <div class="nav-links">
+      <a href="seeker-home.html"><i class="ti ti-home"></i>マイページ</a>
+      <a href="seeker-profile.html"><i class="ti ti-user-edit"></i>プロフィール</a>
+      <a href="seeker-resume.html"><i class="ti ti-file-cv"></i>履歴書</a>
+      <a href="seeker-jobs.html" class="active"><i class="ti ti-search"></i>求人検索</a>
+    </div>
+    <div class="nav-right">
+      <div class="user-badge">
+        <div class="user-avatar"><i class="ti ti-user"></i></div>
+        <span id="userName">読み込み中...</span>
+      </div>
+      <button class="btn-logout" id="logoutBtn"><i class="ti ti-logout"></i>ログアウト</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="seeker-home.html"><i class="ti ti-home"></i>マイページ</a>
+  <a href="seeker-profile.html"><i class="ti ti-user-edit"></i>プロフィール</a>
+  <a href="seeker-resume.html"><i class="ti ti-file-cv"></i>履歴書</a>
+  <a href="seeker-jobs.html" class="active"><i class="ti ti-search"></i>求人検索</a>
+  <div class="mobile-user"><i class="ti ti-user-circle"></i><span id="userNameMobile">読み込み中...</span></div>
+  <button class="btn-logout" id="logoutBtnMobile"><i class="ti ti-logout"></i>ログアウト</button>
+</div>
+
+<!-- Search Hero -->
+<div class="search-hero">
+  <p class="search-hero-label">Job Search</p>
+  <h1>医療スタッフ求人を探す</h1>
+  <p class="search-hero-sub">キーワード・職種・雇用形態でしぼり込めます</p>
+
+  <div class="search-form-card">
+    <div class="search-form">
+      <div class="search-field search-field-keyword">
+        <i class="ti ti-search search-field-icon"></i>
+        <input type="text" id="searchKeyword" placeholder="キーワード（職種・施設名・地域など）">
+      </div>
+      <div class="search-field">
+        <div class="select-wrap">
+          <select id="searchJobType">
+            <option value="">すべての職種</option>
+            <option value="看護師">看護師</option>
+            <option value="保健師">保健師</option>
+            <option value="助産師">助産師</option>
+            <option value="臨床検査技師">臨床検査技師</option>
+            <option value="放射線技師">放射線技師</option>
+            <option value="PT（理学療法士）">PT（理学療法士）</option>
+            <option value="OT（作業療法士）">OT（作業療法士）</option>
+            <option value="ST（言語聴覚士）">ST（言語聴覚士）</option>
+            <option value="ヘルパー">ヘルパー</option>
+          </select>
+          <i class="ti ti-chevron-down select-icon"></i>
+        </div>
+      </div>
+      <div class="search-field">
+        <div class="select-wrap">
+          <select id="searchEmpType">
+            <option value="">すべての雇用形態</option>
+            <option value="常勤">常勤</option>
+            <option value="非常勤">非常勤</option>
+            <option value="スポット（単発）">スポット（単発）</option>
+            <option value="業務委託">業務委託</option>
+          </select>
+          <i class="ti ti-chevron-down select-icon"></i>
+        </div>
+      </div>
+      <button type="button" class="btn-search" id="searchBtn">
+        <i class="ti ti-search"></i>検索
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Main -->
+<main>
+  <div class="wrap">
+
+    <!-- Results bar -->
+    <div class="results-bar">
+      <p class="results-count">
+        <span id="resultsNum">7</span>件の求人が見つかりました
+      </p>
+      <button type="button" class="btn-reset" id="resetBtn">
+        <i class="ti ti-x"></i>検索をリセット
+      </button>
+    </div>
+
+    <!-- Job Grid -->
+    <div class="job-grid" id="jobGrid">
+      <!-- JS で描画 -->
+    </div>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+      <p>医療資格者と医療機関をつなぐ<br>スポット求人マッチングサービス</p>
+    </div>
+    <div class="footer-links">
+      <h4>求職者の方へ</h4>
+      <ul><li>求人を探す</li><li>プロフィール登録</li><li>ご利用の流れ</li></ul>
+    </div>
+    <div class="footer-links">
+      <h4>求人者の方へ</h4>
+      <ul><li>求人を掲載する</li><li>料金について</li><li>ご利用の流れ</li></ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 MediSpot（メディスポット）. All rights reserved.</p></div>
+
+<script src="js/seeker-jobs.js"></script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot - 求職者マイページ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/seeker-home.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <div class="nav-links">
+      <a href="seeker-home.html" class="active"><i class="ti ti-home"></i>マイページ</a>
+      <a href="seeker-profile.html"><i class="ti ti-user-edit"></i>プロフィール</a>
+      <a href="seeker-resume.html"><i class="ti ti-file-cv"></i>履歴書</a>
+      <a href="seeker-jobs.html"><i class="ti ti-search"></i>求人検索</a>
+    </div>
+    <div class="nav-right">
+      <div class="user-badge">
+        <div class="user-avatar"><i class="ti ti-user"></i></div>
+        <span id="userName">読み込み中...</span>
+      </div>
+      <button class="btn-logout" id="logoutBtn"><i class="ti ti-logout"></i>ログアウト</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="seeker-home.html" class="active"><i class="ti ti-home"></i>マイページ</a>
+  <a href="seeker-profile.html"><i class="ti ti-user-edit"></i>プロフィール</a>
+  <a href="seeker-resume.html"><i class="ti ti-file-cv"></i>履歴書</a>
+  <a href="seeker-jobs.html"><i class="ti ti-search"></i>求人検索</a>
+  <div class="mobile-user"><i class="ti ti-user-circle"></i><span id="userNameMobile">読み込み中...</span></div>
+  <button class="btn-logout" id="logoutBtnMobile"><i class="ti ti-logout"></i>ログアウト</button>
+</div>
+
+<!-- Welcome Section -->
+<div class="welcome-section">
+  <div class="wrap">
+    <div class="welcome-inner">
+      <div>
+        <p class="welcome-label">My Page</p>
+        <h1 class="welcome-title">ようこそ、<span id="userNameWelcome">...</span>様</h1>
+        <p class="welcome-date"><i class="ti ti-calendar"></i><span id="todayDate"></span></p>
+      </div>
+      <div class="welcome-badge">
+        <i class="ti ti-stethoscope"></i>
+        <span>求職者マイページ</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="summary-section">
+  <div class="wrap">
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="summary-icon color-terra">
+          <i class="ti ti-send"></i>
+        </div>
+        <div class="summary-body">
+          <p class="summary-label">応募中の件数</p>
+          <p class="summary-num">4<span class="summary-unit">件</span></p>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon color-terra-dark">
+          <i class="ti ti-heart-handshake"></i>
+        </div>
+        <div class="summary-body">
+          <p class="summary-label">マッチング成立数</p>
+          <p class="summary-num">2<span class="summary-unit">件</span></p>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon color-pink">
+          <i class="ti ti-bookmark"></i>
+        </div>
+        <div class="summary-body">
+          <p class="summary-label">保存した求人数</p>
+          <p class="summary-num">9<span class="summary-unit">件</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notifications -->
+<div class="section">
+  <div class="wrap">
+    <h2 class="section-title"><i class="ti ti-bell"></i>通知</h2>
+    <div class="notifications">
+      <div class="notif-item notif-terra">
+        <div class="notif-icon">
+          <i class="ti ti-clipboard-check"></i>
+        </div>
+        <div class="notif-body">
+          <p class="notif-title">応募した求人の選考状況が更新されました</p>
+          <p class="notif-desc">「看護師（夜間病棟スポット）/ 山田総合病院」の選考が進んでいます。採用担当者からメッセージを確認してください。</p>
+        </div>
+        <a href="seeker-applications.html" class="notif-action">確認する</a>
+      </div>
+      <div class="notif-item notif-pink">
+        <div class="notif-icon">
+          <i class="ti ti-heart-handshake"></i>
+        </div>
+        <div class="notif-body">
+          <p class="notif-title">マッチングが成立しました</p>
+          <p class="notif-desc">「臨床検査技師（スポット）/ 田中クリニック」でマッチングが成立しました。チャットで勤務の詳細を確認してください。</p>
+        </div>
+        <a href="#" class="notif-action">チャットへ</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="section section-tint">
+  <div class="wrap">
+    <h2 class="section-title"><i class="ti ti-rocket"></i>クイックアクション</h2>
+    <div class="actions-grid">
+      <a href="seeker-profile.html" class="action-card">
+        <div class="action-icon">
+          <i class="ti ti-user-edit"></i>
+        </div>
+        <p class="action-label">スキル・<br>プロフィール登録</p>
+      </a>
+      <a href="seeker-resume.html" class="action-card">
+        <div class="action-icon">
+          <i class="ti ti-file-cv"></i>
+        </div>
+        <p class="action-label">履歴書・<br>職務経歴書</p>
+      </a>
+      <a href="seeker-jobs.html" class="action-card">
+        <div class="action-icon">
+          <i class="ti ti-search"></i>
+        </div>
+        <p class="action-label">求人検索・<br>一覧</p>
+      </a>
+      <a href="seeker-applications.html" class="action-card">
+        <div class="action-icon">
+          <i class="ti ti-file-text"></i>
+        </div>
+        <p class="action-label">応募履歴</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- 応募履歴 -->
+<div class="section">
+  <div class="wrap">
+    <div class="section-title-row">
+      <h2 class="section-title"><i class="ti ti-file-text"></i>応募履歴</h2>
+      <a href="seeker-applications.html" class="section-more">すべて見る <i class="ti ti-arrow-right"></i></a>
+    </div>
+    <div class="application-list">
+
+      <div class="application-item">
+        <div class="application-header">
+          <div class="application-tags">
+            <span class="tag tag-type">スポット</span>
+            <span class="tag tag-job">看護師</span>
+          </div>
+          <span class="status-badge status-reviewing"><i class="ti ti-loader"></i>選考中</span>
+        </div>
+        <p class="application-job">看護師（夜間病棟スポット）</p>
+        <p class="application-facility"><i class="ti ti-building-hospital"></i>山田総合病院</p>
+        <div class="application-footer">
+          <span class="application-date"><i class="ti ti-calendar"></i>応募日：2026.06.25</span>
+          <a href="seeker-applications.html" class="application-link">詳細を見る <i class="ti ti-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="application-item">
+        <div class="application-header">
+          <div class="application-tags">
+            <span class="tag tag-type">スポット</span>
+            <span class="tag tag-job">臨床検査技師</span>
+          </div>
+          <span class="status-badge status-matched"><i class="ti ti-heart-handshake"></i>マッチング成立</span>
+        </div>
+        <p class="application-job">臨床検査技師（スポット）</p>
+        <p class="application-facility"><i class="ti ti-building-hospital"></i>田中クリニック</p>
+        <div class="application-footer">
+          <span class="application-date"><i class="ti ti-calendar"></i>応募日：2026.06.20</span>
+          <a href="seeker-applications.html" class="application-link">詳細を見る <i class="ti ti-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="application-item">
+        <div class="application-header">
+          <div class="application-tags">
+            <span class="tag tag-type">非常勤</span>
+            <span class="tag tag-job">理学療法士（PT）</span>
+          </div>
+          <span class="status-badge status-pending"><i class="ti ti-clock"></i>選考待ち</span>
+        </div>
+        <p class="application-job">理学療法士（PT）非常勤</p>
+        <p class="application-facility"><i class="ti ti-building-hospital"></i>さくら介護リハビリ施設</p>
+        <div class="application-footer">
+          <span class="application-date"><i class="ti ti-calendar"></i>応募日：2026.06.18</span>
+          <a href="seeker-applications.html" class="application-link">詳細を見る <i class="ti ti-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="application-item">
+        <div class="application-header">
+          <div class="application-tags">
+            <span class="tag tag-type">常勤</span>
+            <span class="tag tag-job">作業療法士（OT）</span>
+          </div>
+          <span class="status-badge status-rejected"><i class="ti ti-x"></i>不採用</span>
+        </div>
+        <p class="application-job">作業療法士（OT）常勤</p>
+        <p class="application-facility"><i class="ti ti-building-hospital"></i>東京リハビリテーション病院</p>
+        <div class="application-footer">
+          <span class="application-date"><i class="ti ti-calendar"></i>応募日：2026.06.10</span>
+          <a href="seeker-applications.html" class="application-link">詳細を見る <i class="ti ti-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+      <p>医療資格者と医療機関をつなぐ<br>スポット求人マッチングサービス</p>
+    </div>
+    <div class="footer-links">
+      <h4>求職者の方へ</h4>
+      <ul>
+        <li>求人を探す</li>
+        <li>プロフィール登録</li>
+        <li>ご利用の流れ</li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>求人者の方へ</h4>
+      <ul>
+        <li>求人を掲載する</li>
+        <li>料金について</li>
+        <li>ご利用の流れ</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 MediSpot（メディスポット）. All rights reserved.</p></div>
+
+<script src="js/seeker-home.js"></script>
+</body>
+</html>

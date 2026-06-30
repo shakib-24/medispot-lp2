@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot - 履歴書・職務経歴書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/seeker-resume.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <div class="nav-links">
+      <a href="seeker-home.html"><i class="ti ti-home"></i>マイページ</a>
+      <a href="seeker-profile.html"><i class="ti ti-user-edit"></i>プロフィール</a>
+      <a href="seeker-resume.html" class="active"><i class="ti ti-file-cv"></i>履歴書</a>
+      <a href="seeker-jobs.html"><i class="ti ti-search"></i>求人検索</a>
+    </div>
+    <div class="nav-right">
+      <div class="user-badge">
+        <div class="user-avatar"><i class="ti ti-user"></i></div>
+        <span id="userName">読み込み中...</span>
+      </div>
+      <button class="btn-logout" id="logoutBtn"><i class="ti ti-logout"></i>ログアウト</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="seeker-home.html"><i class="ti ti-home"></i>マイページ</a>
+  <a href="seeker-profile.html"><i class="ti ti-user-edit"></i>プロフィール</a>
+  <a href="seeker-resume.html" class="active"><i class="ti ti-file-cv"></i>履歴書</a>
+  <a href="seeker-jobs.html"><i class="ti ti-search"></i>求人検索</a>
+  <div class="mobile-user"><i class="ti ti-user-circle"></i><span id="userNameMobile">読み込み中...</span></div>
+  <button class="btn-logout" id="logoutBtnMobile"><i class="ti ti-logout"></i>ログアウト</button>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <p class="page-header-label">Resume & CV</p>
+  <h1>履歴書・職務経歴書</h1>
+  <p>学歴・資格・職務経歴を入力して、採用担当者にアピールしましょう</p>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <i class="ti ti-circle-check"></i>
+  <span id="toastMsg">保存しました</span>
+</div>
+
+<main>
+  <div class="wrap">
+    <form id="resumeForm" novalidate>
+
+      <!-- 基本情報（プロフィールから自動取得） -->
+      <div class="personal-card">
+        <div class="personal-card-header">
+          <div class="personal-card-title">
+            <i class="ti ti-user-circle"></i>基本情報（プロフィールから自動取得）
+          </div>
+          <a href="seeker-profile.html" class="personal-edit-link">
+            <i class="ti ti-edit"></i>プロフィールを編集
+          </a>
+        </div>
+        <div class="personal-grid">
+          <div class="personal-item">
+            <span class="personal-label">氏名</span>
+            <span class="personal-value" id="piName">—</span>
+          </div>
+          <div class="personal-item">
+            <span class="personal-label">生年月日</span>
+            <span class="personal-value" id="piBirthdate">—</span>
+          </div>
+          <div class="personal-item">
+            <span class="personal-label">年齢</span>
+            <span class="personal-value" id="piAge">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 📄 履歴書 ===== -->
+      <div class="doc-section">
+        <div class="doc-section-header">
+          <i class="ti ti-file-text doc-icon"></i>
+          <h2 class="doc-section-title">履歴書</h2>
+        </div>
+
+        <!-- 学歴 -->
+        <div class="subsection">
+          <h3 class="subsection-title"><i class="ti ti-school"></i>学歴</h3>
+          <div id="educationList" class="dyn-list"></div>
+          <button type="button" class="btn-add-row" onclick="addEducation()">
+            <i class="ti ti-plus"></i>学歴を追加
+          </button>
+        </div>
+
+        <!-- 免許・資格 -->
+        <div class="subsection">
+          <h3 class="subsection-title"><i class="ti ti-license"></i>免許・資格</h3>
+          <div id="licenseList" class="dyn-list"></div>
+          <button type="button" class="btn-add-row" onclick="addLicense()">
+            <i class="ti ti-plus"></i>免許・資格を追加
+          </button>
+        </div>
+
+        <!-- 本人希望記入欄 -->
+        <div class="subsection">
+          <h3 class="subsection-title"><i class="ti ti-pencil"></i>本人希望記入欄</h3>
+          <textarea id="personalNote" rows="4"
+            placeholder="希望職種・勤務地・給与・就業時間・その他の希望条件をご記入ください。&#10;例）スポット勤務希望。夜間対応可。東京都内希望。"></textarea>
+        </div>
+      </div>
+
+      <!-- ===== 📑 職務経歴書 ===== -->
+      <div class="doc-section">
+        <div class="doc-section-header">
+          <i class="ti ti-file-description doc-icon"></i>
+          <h2 class="doc-section-title">職務経歴書</h2>
+        </div>
+
+        <!-- 職務要約 -->
+        <div class="subsection">
+          <h3 class="subsection-title"><i class="ti ti-align-left"></i>職務要約</h3>
+          <textarea id="workSummary" rows="4"
+            placeholder="これまでの職務経歴を簡潔に要約してください。&#10;例）看護師として12年間、急性期病院・ICU・訪問看護に従事。チームリーダー経験3年。スポット勤務にも即対応できる実務経験を持つ。"></textarea>
+        </div>
+
+        <!-- 職務経歴 -->
+        <div class="subsection">
+          <h3 class="subsection-title"><i class="ti ti-building-hospital"></i>職務経歴</h3>
+          <div id="experienceList" class="dyn-list"></div>
+          <button type="button" class="btn-add-row" onclick="addExperience()">
+            <i class="ti ti-plus"></i>職務経歴を追加
+          </button>
+        </div>
+
+        <!-- 活かせる経験・知識・スキル -->
+        <div class="subsection">
+          <h3 class="subsection-title"><i class="ti ti-star"></i>活かせる経験・知識・スキル</h3>
+          <textarea id="workSkills" rows="4"
+            placeholder="業務に活かせるスキルや経験をご記入ください。&#10;例）・ICU勤務経験（人工呼吸器管理、中心静脈ライン管理）&#10;・チームリーダー経験（3年）&#10;・電子カルテ操作（○○システム）"></textarea>
+        </div>
+
+        <!-- 自己PR -->
+        <div class="subsection">
+          <h3 class="subsection-title"><i class="ti ti-message-smile"></i>自己PR</h3>
+          <textarea id="workPR" rows="5"
+            placeholder="あなたの強みや仕事への姿勢をアピールしてください。&#10;例）急変対応を得意とし、緊急時でも冷静に判断・行動できます。スポット勤務では初日から即戦力として動けるよう、事前の情報収集と準備を徹底しています。"></textarea>
+        </div>
+      </div>
+
+      <!-- Save / Download -->
+      <div class="action-area">
+        <button type="submit" class="btn-save">
+          <i class="ti ti-device-floppy"></i>履歴書・職務経歴書を保存する
+        </button>
+        <button type="button" class="btn-download" onclick="downloadMock()">
+          <i class="ti ti-download"></i>ダウンロード
+        </button>
+      </div>
+
+    </form>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+      <p>医療資格者と医療機関をつなぐ<br>スポット求人マッチングサービス</p>
+    </div>
+    <div class="footer-links">
+      <h4>求職者の方へ</h4>
+      <ul><li>求人を探す</li><li>プロフィール登録</li><li>ご利用の流れ</li></ul>
+    </div>
+    <div class="footer-links">
+      <h4>求人者の方へ</h4>
+      <ul><li>求人を掲載する</li><li>料金について</li><li>ご利用の流れ</li></ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 MediSpot（メディスポット）. All rights reserved.</p></div>
+
+<script src="js/seeker-resume.js"></script>
+</body>
+</html>

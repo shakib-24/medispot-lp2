@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot - 求人広告 新規作成</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/employer-job-new.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="employer-home.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <div class="nav-links">
+      <a href="employer-home.html"><i class="ti ti-layout-dashboard"></i>マイページ</a>
+      <a href="employer-job-new.html" class="active"><i class="ti ti-plus"></i>求人作成</a>
+      <a href="employer-jobs.html"><i class="ti ti-briefcase"></i>掲載求人管理</a>
+    </div>
+    <div class="nav-right">
+      <div class="employer-badge">
+        <i class="ti ti-building-hospital"></i>
+        <span>求人者：田中総合クリニック</span>
+      </div>
+      <button class="btn-logout" id="logoutBtn"><i class="ti ti-logout"></i>ログアウト</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-user"><i class="ti ti-building-hospital"></i><span>田中総合クリニック</span></div>
+  <a href="employer-home.html"><i class="ti ti-layout-dashboard"></i>マイページ</a>
+  <a href="employer-job-new.html" class="active"><i class="ti ti-plus"></i>求人作成</a>
+  <a href="employer-jobs.html"><i class="ti ti-briefcase"></i>掲載求人管理</a>
+  <button class="btn-logout" id="logoutBtnMobile"><i class="ti ti-logout"></i>ログアウト</button>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <p class="page-header-label">New Job Posting</p>
+  <h1>求人広告 新規作成</h1>
+  <div class="price-notice">
+    <i class="ti ti-info-circle"></i>
+    掲載は<strong>無料</strong>です。採用が決定した時点で成功報酬（<strong>¥3,000 税込</strong>）が発生します。
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <i class="ti ti-circle-check"></i>
+  <span id="toastMsg">求人を掲載しました</span>
+</div>
+
+<main>
+  <div class="wrap">
+    <form id="jobForm" novalidate>
+
+      <!-- 01 求人タイトル -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">01</span>
+          <div>
+            <h2 class="form-section-title">求人タイトル<span class="req">必須</span></h2>
+            <p class="form-section-desc">求職者の目に留まるわかりやすいタイトルをつけてください</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" id="jobTitle" maxlength="60"
+            placeholder="例）【日勤のみ】外来看護師（ブランクOK・週3日〜）" required>
+          <p class="char-hint"><span id="titleLen">0</span> / 60文字</p>
+        </div>
+      </div>
+
+      <!-- 02 募集職種 -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">02</span>
+          <div>
+            <h2 class="form-section-title">募集職種<span class="req">必須</span></h2>
+            <p class="form-section-desc">採用したい職種を選択してください</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="select-wrap">
+            <select id="jobType" required>
+              <option value="">職種を選択してください</option>
+              <option value="看護師">看護師</option>
+              <option value="保健師">保健師</option>
+              <option value="助産師">助産師</option>
+              <option value="臨床検査技師">臨床検査技師</option>
+              <option value="放射線技師">放射線技師</option>
+              <option value="PT（理学療法士）">PT（理学療法士）</option>
+              <option value="OT（作業療法士）">OT（作業療法士）</option>
+              <option value="ST（言語聴覚士）">ST（言語聴覚士）</option>
+              <option value="ヘルパー">ヘルパー</option>
+            </select>
+            <i class="ti ti-chevron-down select-icon"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 雇用形態 -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">03</span>
+          <div>
+            <h2 class="form-section-title">雇用形態<span class="req">必須</span></h2>
+            <p class="form-section-desc">求人の雇用形態を選択してください</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="radio-group">
+            <label class="radio-pill"><input type="radio" name="empType" value="常勤"><span>常勤</span></label>
+            <label class="radio-pill"><input type="radio" name="empType" value="非常勤"><span>非常勤</span></label>
+            <label class="radio-pill"><input type="radio" name="empType" value="スポット（単発）"><span>スポット（単発）</span></label>
+            <label class="radio-pill"><input type="radio" name="empType" value="業務委託"><span>業務委託</span></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 給与 -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">04</span>
+          <div>
+            <h2 class="form-section-title">給与<span class="req">必須</span></h2>
+            <p class="form-section-desc">時給・日給・月給いずれかの形式でご記入ください</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" id="salary"
+            placeholder="例）時給2,200〜2,600円 / 月給28〜35万円" required>
+        </div>
+      </div>
+
+      <!-- 05 勤務地 -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">05</span>
+          <div>
+            <h2 class="form-section-title">勤務地<span class="req">必須</span></h2>
+            <p class="form-section-desc">最寄り駅情報があると求職者の参考になります</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" id="location"
+            placeholder="例）東京都世田谷区○○ ○○線△△駅 徒歩5分" required>
+        </div>
+      </div>
+
+      <!-- 06 仕事内容 -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">06</span>
+          <div>
+            <h2 class="form-section-title">仕事内容<span class="req">必須</span></h2>
+            <p class="form-section-desc">具体的な業務内容・職場環境・勤務時間などをご記入ください</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea id="description" rows="7"
+            placeholder="例）外来診療補助業務全般をお任せします。&#10;・バイタル測定・採血・点滴管理&#10;・医師の診療補助・処置介助&#10;・電話応対・カルテ入力補助&#10;&#10;日勤のみ（9:00〜18:00）、週3日〜応相談" required></textarea>
+        </div>
+      </div>
+
+      <!-- 07 応募要件 -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-num">07</span>
+          <div>
+            <h2 class="form-section-title">応募要件</h2>
+            <p class="form-section-desc">必須要件・歓迎要件に分けて記載すると応募率が上がります</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea id="requirements" rows="5"
+            placeholder="例）【必須】看護師免許（正・准どちらも可）&#10;【歓迎】外来経験者、ブランクのある方歓迎"></textarea>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="save-area">
+        <button type="submit" class="btn-post">
+          <i class="ti ti-speakerphone"></i>この内容で掲載する
+        </button>
+        <p class="save-note">※ 入力内容を確認後、応募受付を開始します</p>
+      </div>
+
+    </form>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+      <p>医療資格者と医療機関をつなぐ<br>スポット求人マッチングサービス</p>
+    </div>
+    <div class="footer-links">
+      <h4>求人者の方へ</h4>
+      <ul><li>求人を掲載する</li><li>料金について</li><li>ご利用の流れ</li></ul>
+    </div>
+    <div class="footer-links">
+      <h4>サポート</h4>
+      <ul><li>よくある質問</li><li>お問い合わせ</li><li>利用規約</li></ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 MediSpot（メディスポット）. All rights reserved.</p></div>
+
+<script src="js/employer-job-new.js"></script>
+</body>
+</html>

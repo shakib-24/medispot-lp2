@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot - 応募者一覧（選考）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/employer-applicants.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="employer-home.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <div class="nav-links">
+      <a href="employer-home.html"><i class="ti ti-layout-dashboard"></i>マイページ</a>
+      <a href="employer-job-new.html"><i class="ti ti-plus"></i>求人作成</a>
+      <a href="employer-jobs.html" class="active"><i class="ti ti-briefcase"></i>掲載求人管理</a>
+    </div>
+    <div class="nav-right">
+      <div class="employer-badge">
+        <i class="ti ti-building-hospital"></i>
+        <span>求人者：田中総合クリニック</span>
+      </div>
+      <button class="btn-logout" id="logoutBtn"><i class="ti ti-logout"></i>ログアウト</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-user"><i class="ti ti-building-hospital"></i><span>田中総合クリニック</span></div>
+  <a href="employer-home.html"><i class="ti ti-layout-dashboard"></i>マイページ</a>
+  <a href="employer-job-new.html"><i class="ti ti-plus"></i>求人作成</a>
+  <a href="employer-jobs.html" class="active"><i class="ti ti-briefcase"></i>掲載求人管理</a>
+  <button class="btn-logout" id="logoutBtnMobile"><i class="ti ti-logout"></i>ログアウト</button>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div>
+      <p class="page-header-label">Applicant Screening</p>
+      <h1>応募者一覧（選考画面）</h1>
+      <p class="job-name-display" id="jobNameDisplay">求人を読み込み中...</p>
+    </div>
+    <a href="employer-jobs.html" class="btn-back-jobs">
+      <i class="ti ti-arrow-left"></i>掲載求人管理へ戻る
+    </a>
+  </div>
+</div>
+
+<!-- 個人情報ノーティス -->
+<div class="notice-bar">
+  <span class="notice-emoji">💡</span>
+  <span><strong>個人情報は非公開です：</strong>氏名・連絡先・資格証等は<strong>決済完了まで非公開</strong>です。採用決定後、決済手続きを完了すると開示されます。</span>
+</div>
+
+<main>
+  <div class="wrap">
+    <a href="employer-jobs.html" class="back-link-inline">
+      <i class="ti ti-arrow-left"></i>掲載求人管理へ戻る
+    </a>
+    <div class="applicants-list" id="applicantsList">
+      <!-- JS で描画 -->
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+      <p>医療資格者と医療機関をつなぐ<br>スポット求人マッチングサービス</p>
+    </div>
+    <div class="footer-links">
+      <h4>求人者の方へ</h4>
+      <ul><li>求人を掲載する</li><li>料金について</li><li>ご利用の流れ</li></ul>
+    </div>
+    <div class="footer-links">
+      <h4>サポート</h4>
+      <ul><li>よくある質問</li><li>お問い合わせ</li><li>利用規約</li></ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 MediSpot（メディスポット）. All rights reserved.</p></div>
+
+<script src="js/employer-applicants.js"></script>
+</body>
+</html>

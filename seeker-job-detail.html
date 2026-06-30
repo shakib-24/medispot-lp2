@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot - 求人詳細</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/seeker-job-detail.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <div class="nav-links">
+      <a href="seeker-home.html"><i class="ti ti-home"></i>マイページ</a>
+      <a href="seeker-profile.html"><i class="ti ti-user-edit"></i>プロフィール</a>
+      <a href="seeker-resume.html"><i class="ti ti-file-cv"></i>履歴書</a>
+      <a href="seeker-jobs.html" class="active"><i class="ti ti-search"></i>求人検索</a>
+    </div>
+    <div class="nav-right">
+      <div class="user-badge">
+        <div class="user-avatar"><i class="ti ti-user"></i></div>
+        <span id="userName">読み込み中...</span>
+      </div>
+      <button class="btn-logout" id="logoutBtn"><i class="ti ti-logout"></i>ログアウト</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="seeker-home.html"><i class="ti ti-home"></i>マイページ</a>
+  <a href="seeker-profile.html"><i class="ti ti-user-edit"></i>プロフィール</a>
+  <a href="seeker-resume.html"><i class="ti ti-file-cv"></i>履歴書</a>
+  <a href="seeker-jobs.html" class="active"><i class="ti ti-search"></i>求人検索</a>
+  <div class="mobile-user"><i class="ti ti-user-circle"></i><span id="userNameMobile">読み込み中...</span></div>
+  <button class="btn-logout" id="logoutBtnMobile"><i class="ti ti-logout"></i>ログアウト</button>
+</div>
+
+<!-- Back bar -->
+<div class="back-bar">
+  <div class="back-bar-inner">
+    <a href="seeker-jobs.html" class="back-link">
+      <i class="ti ti-arrow-left"></i>求人一覧へ戻る
+    </a>
+  </div>
+</div>
+
+<!-- Job Hero -->
+<div class="job-hero">
+  <div class="job-hero-inner">
+    <div class="job-badges" id="jobBadges"></div>
+    <h1 class="job-title" id="jobTitle">読み込み中...</h1>
+    <div class="job-hero-meta">
+      <span class="job-meta-item">
+        <i class="ti ti-building"></i>
+        <span id="jobCompany">—</span>
+      </span>
+      <span class="job-meta-item">
+        <i class="ti ti-calendar"></i>掲載日：<span id="jobDate">—</span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- Main -->
+<main>
+  <div class="content-wrap">
+    <div class="content-grid">
+
+      <!-- ===== 詳細カラム ===== -->
+      <div class="detail-col">
+
+        <!-- 概要グリッド -->
+        <div class="info-summary">
+          <div class="info-item">
+            <span class="info-label"><i class="ti ti-coins"></i>給与</span>
+            <span class="info-value salary" id="detailSalary">—</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label"><i class="ti ti-briefcase"></i>雇用形態</span>
+            <span class="info-value" id="detailEmpType">—</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label"><i class="ti ti-clock"></i>勤務時間</span>
+            <span class="info-value" id="detailWorkHours">—</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label"><i class="ti ti-map-pin"></i>勤務地</span>
+            <span class="info-value" id="detailLocation">—</span>
+          </div>
+        </div>
+
+        <!-- 仕事内容 -->
+        <div class="detail-card">
+          <h2 class="detail-card-title">
+            <i class="ti ti-file-description"></i>仕事内容
+          </h2>
+          <div class="detail-card-body" id="detailDescription">—</div>
+        </div>
+
+        <!-- 応募要件 -->
+        <div class="detail-card">
+          <h2 class="detail-card-title">
+            <i class="ti ti-checklist"></i>応募要件
+          </h2>
+          <div class="detail-card-body" id="detailRequirements">—</div>
+        </div>
+
+        <!-- 医療機関について -->
+        <div class="detail-card">
+          <h2 class="detail-card-title">
+            <i class="ti ti-building-hospital"></i>医療機関について
+          </h2>
+          <div class="detail-card-body" id="detailInstitution">—</div>
+        </div>
+
+      </div>
+
+      <!-- ===== 応募カラム ===== -->
+      <div class="apply-col">
+        <div class="apply-card" id="applyCard">
+
+          <!-- 給与表示 -->
+          <div class="apply-salary-display">
+            <span class="apply-salary-label">給与</span>
+            <span class="apply-salary-value" id="applySalary">—</span>
+          </div>
+
+          <!-- 未応募状態 -->
+          <div id="applyNotApplied">
+            <button class="btn-apply-main" id="applyToggleBtn">
+              <i class="ti ti-send"></i>この求人に応募する
+            </button>
+
+            <!-- 応募フォーム（トグル） -->
+            <div class="apply-form-area" id="applyFormArea" hidden>
+              <div class="apply-note">
+                <i class="ti ti-info-circle"></i>
+                <span>応募すると、登録済みのプロフィールが医療機関へ提示されます</span>
+              </div>
+              <a href="seeker-profile.html" class="apply-profile-link">
+                <i class="ti ti-user-edit"></i>プロフィールを確認・編集する
+              </a>
+              <div class="form-group">
+                <label class="form-label">応募メッセージ（任意）</label>
+                <textarea id="applyMessage" rows="4"
+                  placeholder="志望動機や希望条件など、採用担当者へのメッセージをご記入ください"></textarea>
+              </div>
+              <button class="btn-apply-confirm" id="applyConfirmBtn">
+                <i class="ti ti-check"></i>応募を確定する
+              </button>
+            </div>
+          </div>
+
+          <!-- 応募済み状態 -->
+          <div id="applyApplied" hidden>
+            <div class="applied-badge-lg">
+              <i class="ti ti-circle-check"></i>
+              <span>この求人に応募済みです</span>
+            </div>
+            <p class="applied-note">
+              採用担当者からのご連絡をお待ちください。<br>
+              応募履歴はマイページでご確認いただけます。
+            </p>
+            <a href="seeker-home.html" class="applied-home-link">
+              <i class="ti ti-home"></i>マイページへ戻る
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+      <p>医療資格者と医療機関をつなぐ<br>スポット求人マッチングサービス</p>
+    </div>
+    <div class="footer-links">
+      <h4>求職者の方へ</h4>
+      <ul><li>求人を探す</li><li>プロフィール登録</li><li>ご利用の流れ</li></ul>
+    </div>
+    <div class="footer-links">
+      <h4>求人者の方へ</h4>
+      <ul><li>求人を掲載する</li><li>料金について</li><li>ご利用の流れ</li></ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 MediSpot（メディスポット）. All rights reserved.</p></div>
+
+<script src="js/seeker-job-detail.js"></script>
+</body>
+</html>

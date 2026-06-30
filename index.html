@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot - 医療スタッフのためのマッチングサービス</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+:root{
+  --pink:#FF6B9D;--pink-dark:#E5508A;--pink-light:#FFE8F2;--pink-border:#FFB3D1;
+  --blue:#4BB8E8;--blue-dark:#2A9FD4;--blue-light:#E6F6FD;--blue-border:#B5D4F4;
+  --ink:#1a1a1a;--muted:#666;--line:#e5e7eb;--bg:#F8F9FF;--white:#fff;--max-w:960px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 32px}
+ 
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700}
+.logo span.m{color:var(--pink)}
+.logo span.s{color:var(--blue)}
+.logo-sub{font-size:11px;color:#aaa;font-weight:400;margin-left:4px}
+.nav-links{display:flex;gap:24px;font-size:13px;font-weight:500;color:#555}
+.nav-links a:hover{color:var(--pink)}
+.nav-btns{display:flex;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 20px;border-radius:25px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s;gap:6px}
+.btn-outline{background:var(--white);color:var(--blue);border:1.5px solid var(--blue)}
+.btn-outline:hover{background:var(--blue-light)}
+.btn-pink{background:var(--pink);color:#fff;box-shadow:0 4px 12px rgba(255,107,157,.3)}
+.btn-pink:hover{background:var(--pink-dark);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:20px 32px;z-index:99;flex-direction:column;gap:14px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:15px;color:var(--ink);padding:8px 0;border-bottom:1px solid #f0f0f0}
+ 
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:520px;overflow:hidden}
+.hero-left{padding:48px 40px;background:linear-gradient(135deg,var(--pink-light) 0%,var(--blue-light) 100%);display:flex;flex-direction:column;justify-content:center;gap:20px}
+.hero-eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--pink-dark)}
+.hero-title{font-family:'Noto Serif JP',serif;font-size:30px;font-weight:600;line-height:1.6;color:var(--ink)}
+.hero-title .p{color:var(--pink)}
+.hero-title .b{color:var(--blue)}
+.hero-sub{font-size:14px;color:var(--muted);line-height:1.9}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-hero-pink{padding:14px 24px;background:var(--pink);color:#fff;border:none;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 4px 16px rgba(255,107,157,.4)}
+.btn-hero-pink:hover{background:var(--pink-dark);transform:translateY(-2px)}
+.btn-hero-blue{padding:14px 24px;background:var(--blue);color:#fff;border:none;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 4px 16px rgba(75,184,232,.4)}
+.btn-hero-blue:hover{background:var(--blue-dark);transform:translateY(-2px)}
+.hero-badges{display:flex;gap:14px;flex-wrap:wrap}
+.hero-badge-item{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px}
+.hero-badge-item i{color:var(--pink);font-size:15px}
+.hero-right{position:relative;overflow:hidden}
+.hero-right img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:transform .6s}
+.hero-right:hover img{transform:scale(1.04)}
+.hero-card{position:absolute;bottom:20px;left:20px;background:rgba(255,255,255,.95);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px;border:1px solid var(--line);box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.hero-card-icon{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pink-light),var(--blue-light));display:flex;align-items:center;justify-content:center}
+.hero-card-icon i{font-size:18px;color:var(--pink)}
+.hero-card p{font-size:13px;font-weight:700;color:var(--ink)}
+.hero-card span{font-size:11px;color:var(--muted)}
+ 
+/* SPLIT */
+.split{display:grid;grid-template-columns:1fr 1fr}
+.split-pink{background:var(--pink);color:#fff;padding:48px 40px;text-align:center;display:block;transition:background .2s}
+.split-pink:hover{background:var(--pink-dark)}
+.split-blue{background:var(--blue);color:#fff;padding:48px 40px;text-align:center;display:block;transition:background .2s}
+.split-blue:hover{background:var(--blue-dark)}
+.split-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;opacity:.9;display:block;margin-bottom:6px}
+.split-title{font-family:'Noto Serif JP',serif;font-size:30px;font-weight:600;letter-spacing:.1em;display:block;margin-bottom:14px}
+.split-desc{font-size:13px;line-height:1.9;opacity:.92;display:block;margin-top:12px}
+.split-arrow{font-size:22px;display:block;margin-top:16px;opacity:.8}
+ 
+/* TRUST */
+.trust{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+.trust-item{background:#fff;padding:24px 28px;display:flex;align-items:center;gap:14px}
+.trust-icon{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--pink-light),var(--blue-light));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.trust-icon i{font-size:20px;color:var(--pink)}
+.trust-title{font-size:14px;font-weight:700;color:var(--ink)}
+.trust-desc{font-size:12px;color:var(--muted);margin-top:2px}
+ 
+/* COUNTER */
+.counter{background:linear-gradient(135deg,var(--pink),var(--blue));padding:36px 32px}
+.counter-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.counter-num{font-size:34px;font-weight:700;color:#fff;display:block}
+.counter-label{font-size:12px;color:rgba(255,255,255,.85);margin-top:4px}
+ 
+/* SECTION */
+.section{padding:48px 32px;background:#fff}
+.section-gray{padding:48px 32px;background:var(--bg)}
+.sec-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--pink);text-align:center;margin-bottom:4px}
+.sec-title{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:600;text-align:center;color:var(--ink);margin-bottom:32px;position:relative;padding-bottom:14px}
+.sec-title::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:40px;height:3px;background:linear-gradient(90deg,var(--pink),var(--blue));border-radius:999px}
+.sec-sub{font-size:13px;color:var(--muted);text-align:center;margin-top:-20px;margin-bottom:36px;line-height:1.8}
+ 
+/* FEATURES */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:var(--max-w);margin:0 auto}
+.feat-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 24px;text-align:center;transition:all .3s}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(255,107,157,.1);border-color:var(--pink-border)}
+.feat-icon{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--pink-light),var(--blue-light));display:flex;align-items:center;justify-content:center;margin:0 auto 14px;transition:all .3s}
+.feat-card:hover .feat-icon{background:linear-gradient(135deg,var(--pink),var(--blue))}
+.feat-card:hover .feat-icon i{color:#fff}
+.feat-icon i{font-size:24px;color:var(--pink);transition:all .3s}
+.feat-title{font-family:'Noto Serif JP',serif;font-size:15px;font-weight:600;margin-bottom:8px;color:var(--ink)}
+.feat-desc{font-size:12.5px;color:var(--muted);line-height:1.9}
+ 
+/* PROFESSIONS */
+.prof-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;max-width:var(--max-w);margin:0 auto}
+.prof-badge{background:#fff;border:2px solid transparent;border-radius:14px;padding:18px 8px;text-align:center;font-size:12px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:8px;transition:all .2s;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--pink),var(--blue)) border-box}
+.prof-badge:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(255,107,157,.2)}
+.prof-badge i{font-size:24px;background:linear-gradient(135deg,var(--pink),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.prof-badge span{background:linear-gradient(135deg,var(--pink),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+ 
+/* FLOW */
+.flow-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:var(--max-w);margin:0 auto}
+.flow-card{border-radius:16px;padding:30px;border:1.5px solid}
+.flow-card.seeker{border-color:var(--pink-border);background:var(--pink-light)}
+.flow-card.employer{border-color:var(--blue-border);background:var(--blue-light)}
+.flow-card-title{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid rgba(0,0,0,.06)}
+.flow-card-title .label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px}
+.flow-card.seeker .label{color:var(--pink-dark)}
+.flow-card.employer .label{color:var(--blue-dark)}
+.flow-card-title strong{font-family:'Noto Serif JP',serif;font-size:15px;font-weight:600}
+.flow-card.seeker strong{color:var(--pink-dark)}
+.flow-card.employer strong{color:var(--blue-dark)}
+.flow-step{display:flex;gap:14px;margin-bottom:16px}
+.flow-num{width:28px;height:28px;border-radius:50%;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.flow-card.seeker .flow-num{background:var(--pink)}
+.flow-card.employer .flow-num{background:var(--blue)}
+.flow-step h4{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.flow-step p{font-size:12px;color:var(--muted);line-height:1.7}
+.btn-flow-pink{display:block;padding:12px;background:var(--pink);color:#fff;border:none;border-radius:25px;font-size:13px;font-weight:700;cursor:pointer;text-align:center;margin-top:16px;transition:all .2s}
+.btn-flow-pink:hover{background:var(--pink-dark)}
+.btn-flow-blue{display:block;padding:12px;background:var(--blue);color:#fff;border:none;border-radius:25px;font-size:13px;font-weight:700;cursor:pointer;text-align:center;margin-top:16px;transition:all .2s}
+.btn-flow-blue:hover{background:var(--blue-dark)}
+ 
+/* NEWS */
+.news-list{max-width:760px;margin:0 auto}
+.news-item{display:flex;gap:24px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+.news-item:first-child{border-top:1px solid var(--line)}
+.news-date{font-size:13px;color:var(--pink);font-weight:700;white-space:nowrap;min-width:88px}
+.news-text{font-size:13px;color:var(--ink);line-height:1.6}
+.news-more{max-width:760px;margin:16px auto 0;text-align:right}
+.news-more a{font-size:13px;color:var(--pink);font-weight:700}
+.news-more a:hover{color:var(--pink-dark)}
+
+/* COMPANY */
+.company-card{max-width:640px;margin:0 auto;background:#fff;border:1.5px solid var(--blue-border);border-radius:14px;overflow:hidden}
+.company-row{display:grid;grid-template-columns:120px 1fr;padding:16px 24px;border-bottom:1px solid var(--line)}
+.company-row:last-child{border-bottom:none}
+.company-key{font-size:13px;font-weight:700;color:var(--blue-dark)}
+.company-val{font-size:13px;color:var(--ink)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 4px 12px rgba(75,184,232,.3)}
+.btn-blue:hover{background:var(--blue-dark);transform:translateY(-1px)}
+
+/* FAQ */
+.faq-list{max-width:760px;margin:0 auto}
+.faq-item{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden;background:#fff}
+.faq-q{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:14px;font-weight:600;color:var(--ink);transition:background .2s}
+.faq-q:hover{background:var(--pink-light)}
+.faq-q i{background:linear-gradient(135deg,var(--pink),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;transition:transform .3s;flex-shrink:0;font-size:20px}
+.faq-a{max-height:0;overflow:hidden;transition:all .3s;font-size:13px;color:var(--muted);line-height:1.8;background:#fafafa}
+.faq-item.open .faq-a{max-height:200px;padding:14px 20px}
+.faq-item.open .faq-q i{transform:rotate(180deg)}
+.faq-item.open .faq-q{background:var(--pink-light)}
+ 
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--pink),var(--blue));padding:60px 32px;text-align:center}
+.cta h2{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:600;color:#fff;margin-bottom:10px}
+.cta p{font-size:14px;color:rgba(255,255,255,.88);margin-bottom:28px;line-height:1.8}
+.cta-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.cta-btn-pink{padding:14px 28px;background:#fff;color:var(--pink-dark);border:none;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.cta-btn-pink:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.cta-btn-blue{padding:14px 28px;background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.6);border-radius:30px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.cta-btn-blue:hover{background:rgba(255,255,255,.25);transform:translateY(-2px)}
+ 
+/* FOOTER */
+footer{background:#1a1a2e;padding:40px 32px}
+.footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:32px}
+.footer-logo{font-size:20px;font-weight:700}
+.footer-logo .m{color:var(--pink)}
+.footer-logo .s{color:var(--blue)}
+.footer-brand p{font-size:12px;color:#888;line-height:1.8;margin-top:10px}
+.footer-links h4{font-size:13px;font-weight:700;color:#fff;margin-bottom:14px}
+.footer-links ul{list-style:none}
+.footer-links ul li{font-size:12px;color:#888;padding:5px 0;cursor:pointer}
+.footer-links ul li:hover{color:var(--pink)}
+.footer-bottom{background:#111;padding:14px;text-align:center}
+.footer-bottom p{font-size:12px;color:#555}
+ 
+/* SCROLL TOP */
+.scroll-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--blue));color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;opacity:0;transition:all .3s;z-index:999;box-shadow:0 4px 14px rgba(255,107,157,.4)}
+.scroll-top.visible{opacity:1}
+.scroll-top:hover{transform:translateY(-3px)}
+.fade-up{opacity:0;transform:translateY(28px);transition:all .6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+hr{border:none;border-top:1px solid var(--line)}
+ 
+@media(max-width:900px){
+  .hamburger{display:flex}
+  .nav-links,.nav-btns{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-right{height:260px;order:-1}
+  .hero-left{padding:32px 20px}
+  .hero-title{font-size:22px}
+  .split{grid-template-columns:1fr}
+  .trust-inner{grid-template-columns:1fr}
+  .counter-inner{grid-template-columns:repeat(2,1fr)}
+  .features{grid-template-columns:1fr}
+  .prof-grid{grid-template-columns:repeat(4,1fr)}
+  .flow-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .wrap,.section,.section-gray{padding-left:16px;padding-right:16px}
+  .cta-btns{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+ 
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
+ 
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg width="32" height="32" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">サービスの特徴</a>
+      <a href="#flow">ご利用の流れ</a>
+      <a href="#faq">よくある質問</a>
+    </div>
+    <div class="nav-btns">
+      <a href="login.html" class="btn btn-outline">ログイン</a>
+      <a href="register.html" class="btn btn-pink">新規会員登録</a>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+ 
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features">サービスの特徴</a>
+  <a href="#flow">ご利用の流れ</a>
+  <a href="#faq">よくある質問</a>
+  <a href="login.html" class="btn btn-outline" style="text-align:center;margin-top:8px">ログイン</a>
+  <a href="register.html" class="btn btn-pink" style="text-align:center">新規会員登録</a>
+</div>
+ 
+<div class="hero">
+  <div class="hero-left fade-up">
+    <p class="hero-eyebrow">Medical Matching Service</p>
+    <h1 class="hero-title">医療現場の<span class="p">「出会い」</span>を、<br>もっと身近に。</h1>
+    <p class="hero-sub">看護師・検査技師・PT・OT・STなど医療資格者と医療機関をつなぐ、完全成功報酬型のマッチングサービスです。</p>
+    <div class="hero-btns">
+      <a href="seeker.html" class="btn-hero-pink"><i class="ti ti-user"></i>お仕事を探す（無料）</a>
+      <a href="employer.html" class="btn-hero-blue"><i class="ti ti-building-hospital"></i>求人を掲載する</a>
+    </div>
+    <div class="hero-badges">
+      <span class="hero-badge-item"><i class="ti ti-circle-check"></i>求人掲載無料</span>
+      <span class="hero-badge-item"><i class="ti ti-circle-check"></i>完全成功報酬型</span>
+      <span class="hero-badge-item"><i class="ti ti-circle-check"></i>7職種対応</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="5c1b0dda-3689-46a0-b829-6d451519e362.png" alt="医療スタッフ">
+    <div class="hero-card">
+      <div class="hero-card-icon"><i class="ti ti-heart-handshake"></i></div>
+      <div><p>マッチング成立後すぐ勤務開始</p><span>専用チャット・契約書テンプレート付き</span></div>
+    </div>
+  </div>
+</div>
+ 
+<div class="split">
+  <a href="seeker.html" class="split-pink">
+    <span class="split-label">Job Seeker</span>
+    <span class="split-title">求職者の方へ</span>
+    <i class="ti ti-stethoscope" style="font-size:40px;opacity:.9"></i>
+    <span class="split-desc">看護師・検査技師・リハビリ職など<br>医療資格者の登録は完全無料</span>
+    <span class="split-arrow">→</span>
+  </a>
+  <a href="employer.html" class="split-blue">
+    <span class="split-label">Employer</span>
+    <span class="split-title">求人者の方へ</span>
+    <i class="ti ti-building-hospital" style="font-size:40px;opacity:.9"></i>
+    <span class="split-desc">病院・クリニック・介護施設など<br>掲載無料・完全成功報酬型</span>
+    <span class="split-arrow">→</span>
+  </a>
+</div>
+ 
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item fade-up">
+      <div class="trust-icon"><i class="ti ti-currency-yen"></i></div>
+      <div><p class="trust-title">掲載無料</p><p class="trust-desc">採用決定まで求人掲載は無料</p></div>
+    </div>
+    <div class="trust-item fade-up">
+      <div class="trust-icon"><i class="ti ti-shield-check"></i></div>
+      <div><p class="trust-title">完全成功報酬型</p><p class="trust-desc">採用決定時のみ¥3,000（税込）</p></div>
+    </div>
+    <div class="trust-item fade-up">
+      <div class="trust-icon"><i class="ti ti-messages"></i></div>
+      <div><p class="trust-title">チャット＆契約書付き</p><p class="trust-desc">マッチング後も安心サポート</p></div>
+    </div>
+  </div>
+</div>
+ 
+<div class="counter">
+  <div class="counter-inner">
+    <div class="fade-up"><span class="counter-num" data-target="1200">0</span><p class="counter-label">登録医療スタッフ数</p></div>
+    <div class="fade-up"><span class="counter-num" data-target="350">0</span><p class="counter-label">提携医療機関数</p></div>
+    <div class="fade-up"><span class="counter-num" data-target="98">0</span><p class="counter-label">マッチング満足度（%）</p></div>
+    <div class="fade-up"><span class="counter-num" data-target="3200">0</span><p class="counter-label">累計マッチング件数</p></div>
+  </div>
+</div>
+ 
+<div class="section" id="features">
+  <div class="wrap">
+    <p class="sec-label fade-up">Why Medispot</p>
+    <h2 class="sec-title fade-up">選ばれる理由</h2>
+    <p class="sec-sub fade-up">医療業界に特化したマッチングサービスだからできること</p>
+    <div class="features">
+      <div class="feat-card fade-up">
+        <div class="feat-icon"><i class="ti ti-target-arrow"></i></div>
+        <p class="feat-title">医療資格に特化</p>
+        <p class="feat-desc">7職種の医療資格者専用。資格・スキル・経験で精度高くマッチングします。</p>
+      </div>
+      <div class="feat-card fade-up">
+        <div class="feat-icon"><i class="ti ti-currency-yen"></i></div>
+        <p class="feat-title">完全成功報酬型</p>
+        <p class="feat-desc">求人掲載は完全無料。採用決定時のみ¥3,000（税込）が発生します。</p>
+      </div>
+      <div class="feat-card fade-up">
+        <div class="feat-icon"><i class="ti ti-messages"></i></div>
+        <p class="feat-title">チャット＆契約書サポート</p>
+        <p class="feat-desc">マッチング成立後は専用チャットと契約書テンプレートで締結まで完結。</p>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="section-gray">
+  <div class="wrap">
+    <p class="sec-label fade-up">Supported Jobs</p>
+    <h2 class="sec-title fade-up">対応職種</h2>
+    <p class="sec-sub fade-up">7つの医療職種に特化したマッチング</p>
+    <div class="prof-grid">
+      <div class="prof-badge fade-up"><i class="ti ti-heart-rate-monitor"></i><span>看護師</span></div>
+      <div class="prof-badge fade-up"><i class="ti ti-microscope"></i><span>臨床検査技師</span></div>
+      <div class="prof-badge fade-up"><i class="ti ti-radioactive"></i><span>放射線技師</span></div>
+      <div class="prof-badge fade-up"><i class="ti ti-walk"></i><span>理学療法士（PT）</span></div>
+      <div class="prof-badge fade-up"><i class="ti ti-hand-stop"></i><span>作業療法士（OT）</span></div>
+      <div class="prof-badge fade-up"><i class="ti ti-message-circle"></i><span>言語聴覚士（ST）</span></div>
+      <div class="prof-badge fade-up"><i class="ti ti-wheelchair"></i><span>ヘルパー</span></div>
+    </div>
+  </div>
+</div>
+ 
+<div class="section" id="news">
+  <div class="wrap">
+    <p class="sec-label fade-up">Information</p>
+    <h2 class="sec-title fade-up">お知らせ</h2>
+    <div class="news-list fade-up">
+      <div class="news-item">
+        <span class="news-date">2026.06.25</span>
+        <p class="news-text">MediSpotがサービスを開始しました</p>
+      </div>
+      <div class="news-item">
+        <span class="news-date">2026.06.20</span>
+        <p class="news-text">登録医療資格者数が100名を突破しました</p>
+      </div>
+      <div class="news-item">
+        <span class="news-date">2026.06.15</span>
+        <p class="news-text">新機能「専用チャット」をリリースしました</p>
+      </div>
+    </div>
+    <div class="news-more"><a href="#">一覧を見る →</a></div>
+  </div>
+</div>
+
+<div class="section-gray" id="company">
+  <div class="wrap">
+    <p class="sec-label fade-up">Company</p>
+    <h2 class="sec-title fade-up">運営会社情報</h2>
+    <div class="company-card fade-up">
+      <div class="company-row">
+        <span class="company-key">運営会社</span>
+        <span class="company-val">株式会社MediSpot</span>
+      </div>
+      <div class="company-row">
+        <span class="company-key">所在地</span>
+        <span class="company-val">東京都〇〇区〇〇1-2-3</span>
+      </div>
+      <div class="company-row">
+        <span class="company-key">TEL</span>
+        <span class="company-val">0120-000-000</span>
+      </div>
+      <div class="company-row">
+        <span class="company-key">受付時間</span>
+        <span class="company-val">平日 9:00〜18:00</span>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:24px">
+      <a href="#" class="btn btn-blue"><i class="ti ti-mail"></i>お問い合わせ</a>
+    </div>
+  </div>
+</div>
+ 
+<div class="section-gray" id="faq">
+  <div class="wrap">
+    <p class="sec-label fade-up">FAQ</p>
+    <h2 class="sec-title fade-up">よくある質問</h2>
+    <p class="sec-sub fade-up">ご利用にあたってよくいただくご質問</p>
+    <div class="faq-list">
+      <div class="faq-item fade-up"><div class="faq-q" onclick="toggleFaq(this)"><span>登録や求人掲載に費用はかかりますか？</span><i class="ti ti-chevron-down"></i></div><div class="faq-a">求職者の方は完全無料です。求人者も掲載は無料で、採用決定時のみ¥3,000（税込）が発生します。</div></div>
+      <div class="faq-item fade-up"><div class="faq-q" onclick="toggleFaq(this)"><span>どんな職種に対応していますか？</span><i class="ti ti-chevron-down"></i></div><div class="faq-a">看護師・臨床検査技師・放射線技師・理学療法士・作業療法士・言語聴覚士・ヘルパーの7職種に対応しています。</div></div>
+      <div class="faq-item fade-up"><div class="faq-q" onclick="toggleFaq(this)"><span>マッチング後の連絡はどうやってとりますか？</span><i class="ti ti-chevron-down"></i></div><div class="faq-a">マッチング成立後、当事者専用のチャットルームが自動で開設されます。勤務の詳細確認や契約書のやり取りもプラットフォーム内で完結します。</div></div>
+      <div class="faq-item fade-up"><div class="faq-q" onclick="toggleFaq(this)"><span>スポット以外の雇用形態はありますか？</span><i class="ti ti-chevron-down"></i></div><div class="faq-a">スポット（単発）・業務委託に加え、常勤・非常勤の求人も掲載されています。</div></div>
+      <div class="faq-item fade-up"><div class="faq-q" onclick="toggleFaq(this)"><span>資格証明書は必要ですか？</span><i class="ti ti-chevron-down"></i></div><div class="faq-a">本実装版では本人確認・資格証明書のアップロードが必須となります。現在のプロトタイプ版では未実装です。</div></div>
+    </div>
+  </div>
+</div>
+ 
+<div class="cta">
+  <h2>今すぐMediSpotをはじめよう</h2>
+  <p>医療の現場で、あなたにぴったりの出会いが待っています。</p>
+  <div class="cta-btns">
+    <a href="seeker.html" class="cta-btn-pink"><i class="ti ti-user"></i>お仕事を探す（無料）</a>
+    <a href="employer.html" class="cta-btn-blue"><i class="ti ti-building-hospital"></i>求人を掲載する（無料）</a>
+  </div>
+</div>
+ 
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+      <p>医療資格者と医療機関をつなぐ<br>スポット求人マッチングサービス</p>
+    </div>
+    <div class="footer-links">
+      <h4>求職者の方へ</h4>
+      <ul><li>求人を探す</li><li>プロフィール登録</li><li>ご利用の流れ</li></ul>
+    </div>
+    <div class="footer-links">
+      <h4>求人者の方へ</h4>
+      <ul><li>求人を掲載する</li><li>料金について</li><li>ご利用の流れ</li></ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 MediSpot（メディスポット）. All rights reserved.</p></div>
+ 
+<script>
+const obs=new IntersectionObserver((e)=>{e.forEach((el,i)=>{if(el.isIntersecting){setTimeout(()=>el.target.classList.add('visible'),i*80);obs.unobserve(el.target);}});},{threshold:0.08});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+function animateCounter(el){const t=parseInt(el.dataset.target);const step=t/100;let c=0;const timer=setInterval(()=>{c+=step;if(c>=t){c=t;clearInterval(timer);}el.textContent=Math.floor(c).toLocaleString();},16);}
+const cObs=new IntersectionObserver((e)=>{e.forEach(el=>{if(el.isIntersecting){animateCounter(el.target);cObs.unobserve(el.target);}});},{threshold:0.5});
+document.querySelectorAll('.counter-num').forEach(el=>cObs.observe(el));
+function toggleFaq(el){const item=el.parentElement;const open=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!open)item.classList.add('open');}
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+window.addEventListener('scroll',()=>{document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400);});
+</script>
+</body>
+</html>
+ 

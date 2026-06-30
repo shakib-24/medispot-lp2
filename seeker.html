@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot - 求職者の方へ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+:root{
+  --pink:#FF6B9D;--pink-dark:#E5508A;--pink-light:#FFE8F2;--pink-border:#FFB3D1;
+  --blue:#4BB8E8;--blue-dark:#2A9FD4;--blue-light:#E6F6FD;--blue-border:#B5D4F4;
+  --ink:#1a1a1a;--muted:#666;--line:#e5e7eb;--white:#fff;--max-w:960px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+ 
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:700}
+.logo .m{color:var(--pink)}.logo .s{color:var(--blue)}
+.logo-sub{font-size:10px;color:#aaa;margin-left:4px}
+.nav-back{font-size:13px;color:var(--pink-dark);display:flex;align-items:center;gap:4px;font-weight:600}
+.nav-links{display:flex;gap:20px;font-size:13px;font-weight:500;color:#555}
+.nav-links a:hover{color:var(--pink)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:20px 24px;z-index:99;flex-direction:column;gap:14px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:15px;color:var(--ink);padding:8px 0;border-bottom:1px solid #f0f0f0}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 20px;border-radius:25px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s;gap:6px}
+.btn-pink{background:var(--pink);color:#fff;box-shadow:0 4px 12px rgba(255,107,157,.3)}
+.btn-pink:hover{background:var(--pink-dark);transform:translateY(-1px)}
+ 
+/* PAGE HEADER */
+.page-header{background:linear-gradient(135deg,var(--pink) 0%,#FF8FB3 100%);padding:44px 24px;text-align:center;position:relative;overflow:hidden}
+.page-header::after{content:'';position:absolute;right:8%;top:50%;transform:translateY(-50%);width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 60%)}
+.page-header-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.9);margin-bottom:4px}
+.page-header h1{font-family:'Noto Serif JP',serif;font-size:24px;font-weight:600;color:#fff;letter-spacing:.08em}
+.page-header p{font-size:13px;color:rgba(255,255,255,.88);margin-top:8px;line-height:1.7}
+ 
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:560px;overflow:hidden}
+.hero-left{padding:44px 40px;background:var(--pink-light);display:flex;flex-direction:column;justify-content:center;gap:16px;align-items:flex-start}
+.hero-tag{font-size:12px;color:var(--pink-dark);background:#fff;padding:4px 14px;border-radius:20px;display:inline-block;width:fit-content;border:1px solid var(--pink-border);font-weight:600}
+.hero-title{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:600;line-height:1.6;color:var(--ink)}
+.hero-title span{color:var(--pink-dark)}
+.hero-sub{font-size:13px;color:var(--muted);line-height:1.8}
+.hero-right{position:relative;overflow:hidden;height:560px}
+.hero-right img{width:100%;height:100%;object-fit:cover;object-position:50% 10%;transition:transform .6s}
+.hero-right:hover img{transform:scale(1.04)}
+ 
+/* SEARCH */
+.search-section{background:#fff;padding:24px;border-bottom:1px solid var(--line)}
+.search-inner{max-width:var(--max-w);margin:0 auto}
+.search-title{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.search-title i{color:var(--pink)}
+.search-widget{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end}
+.search-group label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;display:block}
+.search-group select{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;font-size:13px;color:var(--ink);background:#fafafa;outline:none}
+.search-group select:focus{border-color:var(--pink)}
+.btn-search{padding:11px 20px;background:var(--pink);color:#fff;border:none;border-radius:25px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.btn-search:hover{background:var(--pink-dark)}
+ 
+/* SECTION */
+.section{padding:48px 24px;background:#fff}
+.section-gray{padding:48px 24px;background:#fafafa}
+.sec-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--pink);text-align:center;margin-bottom:4px}
+.sec-title{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:600;text-align:center;color:var(--ink);margin-bottom:28px;position:relative;padding-bottom:12px}
+.sec-title::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:36px;height:3px;background:linear-gradient(90deg,var(--pink),var(--blue));border-radius:999px}
+.sec-sub{font-size:13px;color:var(--muted);text-align:center;margin-top:-16px;margin-bottom:28px;line-height:1.7}
+ 
+/* JOB CARDS */
+.job-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:var(--max-w);margin:0 auto}
+.job-card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:all .3s;position:relative}
+.job-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(255,107,157,.12);border-color:var(--pink-border)}
+.job-tag{position:absolute;top:12px;right:12px;background:#FFF0F0;color:#E63946;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px}
+.job-card-body{padding:16px}
+.job-cat{font-size:11px;color:var(--pink-dark);font-weight:700;margin-bottom:5px;display:flex;align-items:center;gap:4px}
+.job-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:10px;padding-right:48px;line-height:1.4}
+.job-meta{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.job-meta span{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px}
+.job-meta i{color:var(--pink);font-size:13px}
+.job-wage{font-size:16px;font-weight:700;color:#E63946;margin-bottom:12px}
+.job-wage small{font-size:11px;color:var(--muted);font-weight:400}
+.btn-apply{width:100%;padding:9px;background:var(--pink-light);color:var(--pink-dark);border:1px solid var(--pink-border);border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s}
+.job-card:hover .btn-apply{background:var(--pink);color:#fff;border-color:var(--pink)}
+ 
+/* CALC */
+.calc-wrap{max-width:760px;margin:0 auto;background:#fff;border-radius:14px;border:1px solid var(--pink-border);overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+.calc-left{padding:28px;background:#fafafa;border-right:1px solid var(--pink-border);display:flex;flex-direction:column;gap:20px}
+.calc-right{padding:28px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(180deg,#fff,var(--pink-light))}
+.range-group{display:flex;flex-direction:column;gap:6px}
+.range-label{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--ink)}
+.range-label span:last-child{color:var(--pink-dark)}
+input[type=range]{-webkit-appearance:none;width:100%;height:5px;border-radius:5px;background:#e5e7eb;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--pink);cursor:pointer}
+.calc-result-label{font-size:12px;color:var(--muted);margin-bottom:6px}
+.calc-result-amount{font-size:34px;font-weight:700;color:var(--pink-dark);margin-bottom:10px}
+.calc-result-amount small{font-size:14px;color:var(--ink)}
+ 
+/* STEPS */
+.steps-list{max-width:640px;margin:0 auto}
+.step-item{display:flex;gap:16px;position:relative;padding-bottom:24px}
+.step-item:not(:last-child)::after{content:'';position:absolute;left:17px;top:36px;width:2px;height:calc(100% - 12px);background:linear-gradient(var(--pink),var(--pink-light))}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--pink);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;box-shadow:0 4px 10px rgba(255,107,157,.3)}
+.step-content{padding-top:6px}
+.step-content h4{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.step-content p{font-size:12px;color:var(--muted);line-height:1.7}
+ 
+/* VOICES */
+.voices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:var(--max-w);margin:0 auto}
+.voice-card{background:#fff;border:1px solid var(--pink-border);border-radius:12px;padding:20px;transition:all .3s;border-top:3px solid var(--pink)}
+.voice-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(255,107,157,.1)}
+.voice-stars{color:var(--pink);font-size:13px;margin-bottom:8px}
+.voice-text{font-size:12.5px;color:#444;line-height:1.8;margin-bottom:12px}
+.voice-author{display:flex;align-items:center;gap:8px}
+.voice-avatar{width:32px;height:32px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700}
+.voice-name{font-size:12px;font-weight:700;color:var(--ink)}
+.voice-role{font-size:10px;color:var(--muted)}
+ 
+/* REGISTER */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:var(--max-w);margin:0 auto}
+.form-card{background:#fff;border:1.5px solid var(--pink-border);border-radius:14px;padding:24px}
+.form-card h3{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.form-card h3 i{color:var(--pink)}
+.form-group{margin-bottom:14px}
+.form-group label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;display:block}
+.form-group select,.form-group input,.form-group textarea{width:100%;padding:9px 12px;border:1.5px solid var(--line);border-radius:8px;font-size:13px;color:var(--ink);background:#fafafa;outline:none;font-family:'Noto Sans JP',sans-serif}
+.form-group select:focus,.form-group input:focus,.form-group textarea:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,107,157,.1)}
+.req{color:var(--pink);font-size:10px;margin-left:4px}
+ 
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--pink),var(--blue));padding:52px 24px;text-align:center}
+.cta h2{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:600;color:#fff;margin-bottom:8px}
+.cta p{font-size:13px;color:rgba(255,255,255,.88);margin-bottom:20px;line-height:1.7}
+.cta-btn{padding:12px 28px;background:#fff;color:var(--pink-dark);border:none;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+ 
+footer{background:#1a1a2e;padding:28px 24px;text-align:center}
+.footer-logo{font-size:18px;font-weight:700;margin-bottom:8px}
+.footer-logo .m{color:var(--pink)}.footer-logo .s{color:var(--blue)}
+footer p{font-size:12px;color:#888}
+.footer-links{display:flex;justify-content:center;gap:20px;margin-top:12px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:#888}
+.footer-bottom{background:#111;padding:12px;text-align:center}
+.footer-bottom p{font-size:11px;color:#555}
+ 
+.scroll-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;border-radius:50%;background:var(--pink);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;opacity:0;transition:all .3s;z-index:999;box-shadow:0 4px 12px rgba(255,107,157,.4)}
+.scroll-top.visible{opacity:1}
+.fade-up{opacity:0;transform:translateY(24px);transition:all .5s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+hr{border:none;border-top:1px solid var(--line)}
+ 
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{height:220px;order:-1}
+  .hero-left{padding:28px 16px}
+  .hero-title{font-size:20px}
+  .search-widget{grid-template-columns:1fr}
+  .job-grid,.voices,.form-grid,.calc-wrap{grid-template-columns:1fr}
+  .calc-left{border-right:none;border-bottom:1px solid var(--pink-border)}
+  .wrap,.section,.section-gray{padding-left:16px;padding-right:16px}
+  .hamburger{display:flex}
+  .nav-links,.nav-inner .btn{display:none}
+}
+</style>
+</head>
+<body>
+ 
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i></button>
+ 
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <a href="index.html" class="nav-back"><i class="ti ti-arrow-left"></i>トップへ戻る</a>
+    <div class="nav-links">
+      <a href="index.html#features">サービスの特徴</a>
+      <a href="index.html#flow">ご利用の流れ</a>
+      <a href="index.html#faq">よくある質問</a>
+    </div>
+    <a href="#register" class="btn btn-pink">無料で登録する</a>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html"><i class="ti ti-arrow-left"></i>トップへ戻る</a>
+  <a href="index.html#features">サービスの特徴</a>
+  <a href="index.html#flow">ご利用の流れ</a>
+  <a href="index.html#faq">よくある質問</a>
+  <a href="#register" class="btn btn-pink" style="text-align:center;margin-top:8px">無料で登録する</a>
+</div>
+ 
+<div class="page-header">
+  <p class="page-header-label">Job Seeker</p>
+  <h1>求職者の方へ</h1>
+  <p>医療資格を活かして、あなたらしい働き方を見つけよう。<br>登録無料・スポット・業務委託に特化したマッチングサービス。</p>
+</div>
+ 
+<div class="hero">
+  <div class="hero-left fade-up">
+    <span class="hero-tag">医療スタッフ専門</span>
+    <h1 class="hero-title">空き時間を、<br><span>あなたのキャリアに。</span></h1>
+    <p class="hero-sub">看護師・検査技師・PT・OT・STなど、あなたの資格と経験を活かしてスポットワークを始めましょう。</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a href="#jobs" class="btn btn-pink" style="padding:10px 20px;font-size:13px">求人を探す <i class="ti ti-arrow-down"></i></a>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px">
+      <span style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><i class="ti ti-circle-check" style="color:var(--pink)"></i>登録完全無料</span>
+      <span style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><i class="ti ti-circle-check" style="color:var(--pink)"></i>スポット対応</span>
+      <span style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><i class="ti ti-circle-check" style="color:var(--pink)"></i>7職種対応</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="nurse.png" alt="看護師">
+  </div>
+</div>
+ 
+<div class="search-section">
+  <div class="search-inner">
+    <p class="search-title"><i class="ti ti-search"></i>求人を探す</p>
+    <div class="search-widget">
+      <div class="search-group">
+        <label>職種</label>
+        <select><option>職種を選択</option><option>看護師</option><option>臨床検査技師</option><option>放射線技師</option><option>理学療法士（PT）</option><option>作業療法士（OT）</option><option>言語聴覚士（ST）</option><option>ヘルパー</option></select>
+      </div>
+      <div class="search-group">
+        <label>勤務地</label>
+        <select><option>都道府県を選択</option><option>東京都</option><option>神奈川県</option><option>大阪府</option><option>福岡県</option></select>
+      </div>
+      <div class="search-group">
+        <label>雇用形態</label>
+        <select><option>雇用形態を選択</option><option>スポット（単発）</option><option>業務委託</option></select>
+      </div>
+      <button class="btn-search"><i class="ti ti-search"></i>検索</button>
+    </div>
+  </div>
+</div>
+ 
+<div class="section" id="jobs">
+  <div class="wrap">
+    <p class="sec-label fade-up">Urgent Spots</p>
+    <h2 class="sec-title fade-up">注目の求人</h2>
+    <p class="sec-sub fade-up">リアルタイムで更新中。あなたに合う求人を見つけよう。</p>
+    <div class="job-grid">
+      <div class="job-card fade-up">
+        <span class="job-tag">急募</span>
+        <div class="job-card-body">
+          <p class="job-cat"><i class="ti ti-heart-rate-monitor"></i>看護師</p>
+          <h3 class="job-title">一般病棟 夜間看護師業務</h3>
+          <div class="job-meta"><span><i class="ti ti-map-pin"></i>東京都 杉並区</span><span><i class="ti ti-calendar"></i>明日 18:00〜翌09:00</span></div>
+          <p class="job-wage">¥2,400<small>/時給</small></p>
+          <button class="btn-apply">詳細を見て応募する</button>
+        </div>
+      </div>
+      <div class="job-card fade-up">
+        <span class="job-tag" style="background:#E8F4E8;color:#2e7d32">高時給</span>
+        <div class="job-card-body">
+          <p class="job-cat"><i class="ti ti-walk"></i>理学療法士（PT）</p>
+          <h3 class="job-title">訪問リハビリテーション業務</h3>
+          <div class="job-meta"><span><i class="ti ti-map-pin"></i>神奈川県 横浜市</span><span><i class="ti ti-calendar"></i>週末のみ（単発可）</span></div>
+          <p class="job-wage">¥2,600<small>/時給</small></p>
+          <button class="btn-apply">詳細を見て応募する</button>
+        </div>
+      </div>
+      <div class="job-card fade-up">
+        <span class="job-tag" style="background:#E8EAF6;color:#3949ab">未経験可</span>
+        <div class="job-card-body">
+          <p class="job-cat"><i class="ti ti-wheelchair"></i>ヘルパー</p>
+          <h3 class="job-title">デイサービスセンター業務</h3>
+          <div class="job-meta"><span><i class="ti ti-map-pin"></i>大阪府 梅田</span><span><i class="ti ti-calendar"></i>来週月曜 09:00〜17:00</span></div>
+          <p class="job-wage">¥1,650<small>/時給</small></p>
+          <button class="btn-apply">詳細を見て応募する</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="section-gray">
+  <div class="wrap">
+    <p class="sec-label fade-up">Simulation</p>
+    <h2 class="sec-title fade-up">収入シミュレーター</h2>
+    <p class="sec-sub fade-up">スポットワークでどのくらい稼げる？計算してみよう。</p>
+    <div class="calc-wrap fade-up">
+      <div class="calc-left">
+        <div class="range-group"><div class="range-label"><span>想定時給</span><span id="wage-val">¥2,200</span></div><input type="range" min="1500" max="3500" step="100" value="2200" id="calc-wage"></div>
+        <div class="range-group"><div class="range-label"><span>1日の勤務時間</span><span id="hours-val">8時間</span></div><input type="range" min="3" max="12" step="1" value="8" id="calc-hours"></div>
+        <div class="range-group"><div class="range-label"><span>月の勤務日数</span><span id="days-val">6日</span></div><input type="range" min="1" max="22" step="1" value="6" id="calc-days"></div>
+      </div>
+      <div class="calc-right">
+        <p class="calc-result-label">推定の月間追加収入</p>
+        <p class="calc-result-amount" id="calc-total">¥105,600<small>（税込）</small></p>
+        <p style="font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:14px">※シミュレーション値です。</p>
+        <button class="btn btn-pink" style="padding:10px 20px">この条件で求人を探す</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="section">
+  <div class="wrap">
+    <p class="sec-label fade-up">How to use</p>
+    <h2 class="sec-title fade-up">ご利用の流れ</h2>
+    <p class="sec-sub fade-up">簡単4ステップで仕事が見つかる</p>
+    <div class="steps-list fade-up">
+      <div class="step-item"><span class="step-num">1</span><div class="step-content"><h4>会員登録（無料）</h4><p>プロフィール・保有資格・スキル・希望雇用形態を入力。</p></div></div>
+      <div class="step-item"><span class="step-num">2</span><div class="step-content"><h4>求人を検索・応募</h4><p>職種・雇用形態で絞り込み、気になる求人にワンクリックで応募。</p></div></div>
+      <div class="step-item"><span class="step-num">3</span><div class="step-content"><h4>マッチング・チャット</h4><p>採用決定後、専用チャットで勤務の詳細を確認。</p></div></div>
+      <div class="step-item"><span class="step-num">4</span><div class="step-content"><h4>勤務開始</h4><p>希望の職場で勤務スタート！自分のペースで働けます。</p></div></div>
+    </div>
+  </div>
+</div>
+ 
+<div class="section-gray">
+  <div class="wrap">
+    <p class="sec-label fade-up">Voices</p>
+    <h2 class="sec-title fade-up">ご利用者の声</h2>
+    <p class="sec-sub fade-up">MediSpotで働いた医療スタッフの声</p>
+    <div class="voices">
+      <div class="voice-card fade-up"><div class="voice-stars">★★★★★</div><p class="voice-text">育児と両立しながら週1〜2日だけ働きたかったので、スポットワーク専門のMediSpotはとても助かりました。</p><div class="voice-author"><div class="voice-avatar">田</div><div><p class="voice-name">田中 さゆり さん</p><p class="voice-role">看護師・30代・東京都</p></div></div></div>
+      <div class="voice-card fade-up"><div class="voice-stars">★★★★★</div><p class="voice-text">ブランクがあって不安でしたが、チャットで事前に職場の方と話せたので安心して初日を迎えられました。</p><div class="voice-author"><div class="voice-avatar">鈴</div><div><p class="voice-name">鈴木 あかり さん</p><p class="voice-role">理学療法士・40代</p></div></div></div>
+      <div class="voice-card fade-up"><div class="voice-stars">★★★★☆</div><p class="voice-text">検索して翌日には面談できました。スピーディーなマッチングで、空き時間を有効に使えています。</p><div class="voice-author"><div class="voice-avatar">山</div><div><p class="voice-name">山本 けいこ さん</p><p class="voice-role">臨床検査技師・20代</p></div></div></div>
+    </div>
+  </div>
+</div>
+ 
+<div class="section" id="register">
+  <div class="wrap">
+    <p class="sec-label fade-up">Register</p>
+    <h2 class="sec-title fade-up">プロフィール登録</h2>
+    <p class="sec-sub fade-up">基本情報を入力して、求人への応募を始めましょう。</p>
+    <div class="form-grid fade-up">
+      <div class="form-card">
+        <h3><i class="ti ti-user"></i>基本情報</h3>
+        <div class="form-group"><label>お名前<span class="req">必須</span></label><input type="text" placeholder="例）佐藤 花子"></div>
+        <div class="form-group"><label>生年月日<span class="req">必須</span></label><input type="date"></div>
+        <div class="form-group"><label>保有資格（職種）<span class="req">必須</span></label><select><option>職種を選択</option><option>看護師</option><option>臨床検査技師</option><option>放射線技師</option><option>理学療法士（PT）</option><option>作業療法士（OT）</option><option>言語聴覚士（ST）</option><option>ヘルパー</option></select></div>
+        <div class="form-group"><label>実務経験年数</label><select><option>選択してください</option><option>1年未満</option><option>1〜3年</option><option>4〜6年</option><option>7〜9年</option><option>10〜15年</option><option>16年以上</option></select></div>
+      </div>
+      <div class="form-card">
+        <h3><i class="ti ti-map-pin"></i>希望条件</h3>
+        <div class="form-group"><label>希望雇用形態</label><select><option>選択してください</option><option>スポット（単発）</option><option>業務委託</option></select></div>
+        <div class="form-group"><label>郵便番号（居住地）</label><input type="text" placeholder="例）123-4567"></div>
+        <div class="form-group"><label>メールアドレス<span class="req">必須</span></label><input type="email" placeholder="例）example@example.com"></div>
+        <div class="form-group"><label>自己PR</label><textarea rows="3" placeholder="資格・経験・得意なことなどを自由に記入してください。"></textarea></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:20px">
+      <button class="btn btn-pink" style="padding:12px 40px;font-size:14px">プロフィールを登録する</button>
+    </div>
+  </div>
+</div>
+ 
+<div class="cta">
+  <h2>まずは無料で登録しよう</h2>
+  <p>登録は3分で完了。あなたにぴったりの職場が見つかります。</p>
+  <a href="register.html" class="cta-btn"><i class="ti ti-user-plus"></i>無料で会員登録する</a>
+</div>
+ 
+<footer>
+  <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+  <p>医療特化型 求人マッチングサービス</p>
+  <div class="footer-links">
+    <a href="index.html">トップページ</a>
+    <a href="employer.html">求人者の方へ</a>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 MediSpot. All rights reserved.</p></div>
+ 
+<script>
+const obs=new IntersectionObserver((e)=>{e.forEach((el,i)=>{if(el.isIntersecting){setTimeout(()=>el.target.classList.add('visible'),i*80);obs.unobserve(el.target);}});},{threshold:0.08});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+const cw=document.getElementById('calc-wage'),ch=document.getElementById('calc-hours'),cd=document.getElementById('calc-days');
+function calc(){const w=parseInt(cw.value),h=parseInt(ch.value),d=parseInt(cd.value);document.getElementById('wage-val').textContent='¥'+w.toLocaleString();document.getElementById('hours-val').textContent=h+'時間';document.getElementById('days-val').textContent=d+'日';document.getElementById('calc-total').innerHTML='¥'+(w*h*d).toLocaleString()+'<small>（税込）</small>';}
+[cw,ch,cd].forEach(el=>el.addEventListener('input',calc));
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
+window.addEventListener('scroll',()=>{document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400);});
+</script>
+</body>
+</html>
