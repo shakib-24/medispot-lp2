@@ -1,4 +1,4 @@
-/* admin-members.css */
+﻿/* admin-members.css */
 :root {
   --green:        #7cb342;
   --green-dark:   #558b2f;
@@ -103,10 +103,13 @@ nav {
   top: 60px;
   left: 0;
   right: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
   background: #fff;
   border-bottom: 1px solid var(--line);
   padding: 20px 24px;
-  z-index: 99;
+  z-index: 999;
   gap: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
 }
@@ -532,3 +535,5 @@ footer { background: #1a1a2e; padding: 40px 32px; }
 
   .footer-inner { grid-template-columns: 1fr; }
 }
+
+body.menu-open { overflow: hidden; }

@@ -1,4 +1,4 @@
-/* employer-jobs.css */
+﻿/* employer-jobs.css */
 :root {
   --blue:        #4BB8E8;
   --blue-dark:   #2A9FD4;
@@ -45,7 +45,7 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:2px 
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;z-index:99;flex-direction:column;background:var(--white);border-bottom:1px solid var(--line);padding:20px 24px;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;width:100%;height:calc(100vh - 60px);overflow-y:auto;z-index:999;flex-direction:column;background:var(--white);border-bottom:1px solid var(--line);padding:20px 24px;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
 .mobile-menu.open{display:flex}
 .mobile-menu a{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:14px;font-weight:500}
 .mobile-menu a:hover,.mobile-menu a.active{background:var(--blue-light);color:var(--blue);font-weight:700}
@@ -136,3 +136,5 @@ footer{background:#111827;color:rgba(255,255,255,.7);padding:40px 24px}
   .btn-applicants,.btn-end{justify-content:center;width:100%}
   .footer-inner{grid-template-columns:1fr;gap:20px}
 }
+
+body.menu-open { overflow: hidden; }

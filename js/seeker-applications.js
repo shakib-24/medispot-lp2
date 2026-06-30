@@ -1,4 +1,4 @@
-/* ===== デモ応募データ（ステータス・応募日） ===== */
+﻿/* ===== デモ応募データ（ステータス・応募日） ===== */
 const DEMO_APP_DATA = {
   'job-1': { date: '2026/06/15', status: '選考中' },
   'job-2': { date: '2026/06/20', status: 'マッチング成立' },
@@ -126,6 +126,7 @@ const STATUS_CONFIG = {
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
 }
 
 /* ===== 応募一覧描画 ===== */

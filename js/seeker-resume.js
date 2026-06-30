@@ -1,4 +1,4 @@
-/* ===== COUNTERS for unique element IDs ===== */
+﻿/* ===== COUNTERS for unique element IDs ===== */
 let eduId = 0, licId = 0, expId = 0;
 
 /* ===== INIT ===== */
@@ -38,6 +38,7 @@ let eduId = 0, licId = 0, expId = 0;
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
 }
 
 /* ===== 基本情報（プロフィールから取得） ===== */

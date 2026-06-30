@@ -1,4 +1,4 @@
-/* ===== 対象求人マスタ ===== */
+﻿/* ===== 対象求人マスタ ===== */
 const JOBS = {
   'job-1': { title: '【日勤のみ】外来看護師（ブランクOK・週3日〜）' },
   'job-2': { title: '放射線技師（健診・一般撮影／土日休み）' },
@@ -93,6 +93,7 @@ const jobId = new URLSearchParams(window.location.search).get('jobId');
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
 }
 
 /* ===== 応募者一覧描画 ===== */

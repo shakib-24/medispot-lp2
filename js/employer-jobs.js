@@ -1,4 +1,4 @@
-/* ===== ダミー求人データ ===== */
+﻿/* ===== ダミー求人データ ===== */
 const DUMMY_JOBS = [
   {
     id: 'job-1',
@@ -106,6 +106,7 @@ try { endedIds = JSON.parse(localStorage.getItem('medispot_ended_jobs') || '{}')
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
 }
 
 /* ===== 求人一覧描画 ===== */

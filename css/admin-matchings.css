@@ -1,4 +1,4 @@
-/* admin-matchings.css */
+﻿/* admin-matchings.css */
 :root {
   --green:#7cb342;--green-dark:#558b2f;--green-light:#f1f8e9;--green-border:#aed581;
   --blue:#4BB8E8;--yellow:#f9a825;--yellow-light:#fff8e1;--yellow-border:#ffe082;
@@ -33,7 +33,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{display:none;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:20px 24px;z-index:99;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu{display:none;flex-direction:column;position:fixed;top:60px;left:0;right:0;width:100%;height:calc(100vh - 60px);overflow-y:auto;background:#fff;border-bottom:1px solid var(--line);padding:20px 24px;z-index:999;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
 .mobile-menu.open{display:flex}
 .mobile-menu a{display:flex;align-items:center;gap:6px;font-size:15px;color:var(--ink);padding:8px 0;border-bottom:1px solid #f0f0f0}
 .mobile-menu a.active{color:var(--green);font-weight:700}
@@ -144,3 +144,5 @@ footer{background:#1a1a2e;padding:40px 32px}
   .mobile-cards{display:block}
   .footer-inner{grid-template-columns:1fr}
 }
+
+body.menu-open { overflow: hidden; }

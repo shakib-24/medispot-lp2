@@ -1,4 +1,4 @@
-/* ===== 認証チェック ===== */
+﻿/* ===== 認証チェック ===== */
 (function () {
   var raw = localStorage.getItem('medispot_user');
   if (!raw) { window.location.href = 'login.html'; return; }
@@ -241,6 +241,7 @@ function statusBadgeIcon(status) {
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
 }
 
 /* ===== XSS対策 ===== */

@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --green: #4BB8E8;
   --green-dark: #2A9FD4;
   --green-light: #E6F6FD;
@@ -116,10 +116,13 @@ nav {
   top: 60px;
   left: 0;
   right: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
   background: #fff;
   border-bottom: 1px solid var(--line);
   padding: 20px 24px;
-  z-index: 99;
+  z-index: 999;
   flex-direction: column;
   gap: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
@@ -510,3 +513,5 @@ footer { background: #1a1a2e; padding: 40px 32px; }
   .btn-match-check,
   .btn-match-chat { flex: 1; justify-content: center; }
 }
+
+body.menu-open { overflow: hidden; }

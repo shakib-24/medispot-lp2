@@ -1,4 +1,4 @@
-/* ===== 職種別スキル定義 ===== */
+﻿/* ===== 職種別スキル定義 ===== */
 const SKILLS_BY_JOB = {
   '看護師':        ['一般病棟', 'ICU/CCU', 'クリニック', '健康診断施設', '訪問看護', '高齢者施設', 'その他'],
   '保健師':        ['行政保健師', '産業保健師', '学校保健師', 'その他'],
@@ -78,6 +78,7 @@ const SKILLS_BY_JOB = {
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
 }
 
 /* ===== 年齢計算 ===== */

@@ -1,4 +1,4 @@
-/* ===== 求人データ ===== */
+﻿/* ===== 求人データ ===== */
 const JOBS = [
   {
     id: 'job-1',
@@ -145,6 +145,7 @@ const EMP_TYPE_CLASS = {
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
 }
 
 /* ===== 検索・フィルタリング ===== */

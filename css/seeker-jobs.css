@@ -1,4 +1,4 @@
-/* ========================================
+﻿/* ========================================
    seeker-jobs.css — MediSpot 求人検索
    ======================================== */
 
@@ -142,11 +142,19 @@ nav {
 /* Mobile menu */
 .mobile-menu {
   display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
   flex-direction: column;
   background: var(--white);
   border-bottom: 1px solid var(--line);
-  padding: 8px 16px 16px;
-  gap: 4px;
+  padding: 20px 24px;
+  gap: 8px;
+  z-index: 999;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
 }
 .mobile-menu.open { display: flex; }
 .mobile-menu a {
@@ -524,3 +532,5 @@ footer {
   .job-grid { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; gap: 20px; }
 }
+
+body.menu-open { overflow: hidden; }

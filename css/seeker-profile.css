@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --pink: #FF6B9D;
   --pink-dark: #E5508A;
   --pink-light: #FFE8F2;
@@ -108,10 +108,13 @@ nav {
   top: 60px;
   left: 0;
   right: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
   background: #fff;
   border-bottom: 1px solid var(--line);
   padding: 20px 24px;
-  z-index: 99;
+  z-index: 999;
   flex-direction: column;
   gap: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
@@ -589,3 +592,5 @@ footer { background: #1a1a2e; padding: 40px 32px; margin-top: 24px; }
   main { padding: 20px 0 40px; }
   .toast { bottom: 16px; right: 16px; left: 16px; }
 }
+
+body.menu-open { overflow: hidden; }

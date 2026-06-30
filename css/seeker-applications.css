@@ -1,4 +1,4 @@
-/* ========================================
+﻿/* ========================================
    seeker-applications.css — MediSpot 応募履歴
    ======================================== */
 
@@ -129,11 +129,19 @@ nav {
 
 .mobile-menu {
   display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
   flex-direction: column;
   background: var(--white);
   border-bottom: 1px solid var(--line);
-  padding: 8px 16px 16px;
-  gap: 4px;
+  padding: 20px 24px;
+  gap: 8px;
+  z-index: 999;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
 }
 .mobile-menu.open { display: flex; }
 .mobile-menu a {
@@ -412,3 +420,5 @@ footer { background: #111827; color: rgba(255,255,255,.7); padding: 40px 24px; }
   .footer-inner { grid-template-columns: 1fr; gap: 20px; }
   main { padding: 20px 16px 48px; }
 }
+
+body.menu-open { overflow: hidden; }

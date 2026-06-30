@@ -1,4 +1,4 @@
-/* ===== 求人マスタデータ ===== */
+﻿/* ===== 求人マスタデータ ===== */
 const JOBS = {
   'job-1': {
     jobType:        '看護師',
@@ -206,6 +206,7 @@ const currentJobId = new URLSearchParams(window.location.search).get('id') || 'j
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
 }
 
 /* ===== 求人詳細の描画 ===== */

@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   const raw = localStorage.getItem('medispot_user');
   if (!raw) {
     window.location.href = 'login.html';
@@ -50,4 +50,5 @@
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
 }
