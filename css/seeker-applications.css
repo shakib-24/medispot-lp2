@@ -394,7 +394,7 @@ footer { background: #111827; color: rgba(255,255,255,.7); padding: 40px 24px; }
 .footer-bottom { background: #0d1117; text-align: center; padding: 14px; font-size: 11px; color: rgba(255,255,255,.4); }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .nav-links, .nav-right { display: none; }
   .hamburger { display: flex; margin-left: auto; }
 
@@ -410,4 +410,5 @@ footer { background: #111827; color: rgba(255,255,255,.7); padding: 40px 24px; }
     padding-top: 10px;
   }
   .footer-inner { grid-template-columns: 1fr; gap: 20px; }
+  main { padding: 20px 16px 48px; }
 }

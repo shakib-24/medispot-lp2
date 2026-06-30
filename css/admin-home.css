@@ -43,7 +43,7 @@ nav {
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 16px;
 }
 .logo { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; flex-shrink: 0; }
@@ -51,11 +51,20 @@ nav {
 .logo .s { color: var(--blue); }
 .logo-sub { font-size: 10px; color: #aaa; margin-left: 4px; white-space: nowrap; }
 
-.nav-links { display: flex; gap: 12px; font-size: 11px; font-weight: 500; color: #555; flex-shrink: 1; }
+.nav-links {
+  flex: 1;
+  display: flex; justify-content: center;
+  gap: 12px; font-size: 11px; font-weight: 500; color: #555;
+  min-width: 0;
+}
 .nav-links a { display: flex; align-items: center; gap: 3px; transition: color .2s; white-space: nowrap; }
 .nav-links a i { font-size: 13px; }
 .nav-links a:hover,
 .nav-links a.active { color: var(--green); font-weight: 700; }
+
+/* PC：ベル＋ハンバーガーのラッパー */
+.mobile-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.mobile-actions .hamburger { display: none; } /* PC時はハンバーガー非表示 */
 
 .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 
@@ -409,8 +418,30 @@ footer { background: #1a1a2e; padding: 40px 32px; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .hamburger { display: flex; }
+  /* ハンバーガーはmobile-actions内で表示 */
+  .mobile-actions .hamburger { display: flex; }
+  /* PCのみのナビ・右バッジエリアを非表示 */
   .nav-links, .nav-right { display: none; }
+
+  /* ベル：モバイルでわずかに大きく */
+  .btn-bell { width: 38px; height: 38px; }
+  .btn-bell i { font-size: 19px; }
+
+  /* 通知ドロップダウン：右端固定・画面幅に収まる */
+  .notif-dropdown {
+    position: fixed;
+    top: 68px;
+    right: 16px;
+    left: auto;
+    width: auto;
+    min-width: 280px;
+    max-width: calc(100vw - 32px);
+  }
+
+  /* トースト：モバイルでも右に収まる */
+  .toast-container { right: 12px; }
+  .toast { min-width: 0; max-width: calc(100vw - 24px); }
+
   .welcome-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
   .welcome-title { font-size: 20px; }
   .summary-grid { grid-template-columns: 1fr 1fr; }

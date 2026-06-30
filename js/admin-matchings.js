@@ -47,6 +47,7 @@ function applyFilters() {
   });
 
   renderTable(filtered);
+  renderCards(filtered);
   updatePipeline(status || null);
 }
 
@@ -85,6 +86,55 @@ function renderTable(rows) {
 
   document.getElementById('resultCount').textContent = rows.length + '件表示中';
   updateSummary();
+}
+
+/* ===== カード描画（モバイル用） ===== */
+function renderCards(rows) {
+  var container = document.getElementById('mobileCards');
+  if (!container) return;
+
+  if (!rows.length) {
+    container.innerHTML =
+      '<div class="member-card" style="text-align:center;padding:32px 16px;color:#bbb">' +
+        '<i class="ti ti-search-off" style="font-size:32px;display:block;margin-bottom:8px;opacity:.3"></i>' +
+        '該当するマッチングが見つかりませんでした' +
+      '</div>';
+    return;
+  }
+
+  container.innerHTML = rows.map(function (r) {
+    var b = BADGE_MAP[r.status] || { cls: 'badge-applied', icon: 'ti-circle' };
+    return (
+      '<div class="member-card">' +
+        '<div class="card-member-header">' +
+          '<div class="card-header-icon"><i class="ti ti-heart-handshake"></i></div>' +
+          '<div>' +
+            '<div style="font-size:14px;font-weight:700;color:var(--ink)">' + esc(r.seeker) + '</div>' +
+            '<div style="font-size:11px;color:#888">No.' + r.no + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="card-row">' +
+          '<span class="card-label">求人タイトル</span>' +
+          '<span class="card-value">' + esc(r.job) + '</span>' +
+        '</div>' +
+        '<div class="card-row">' +
+          '<span class="card-label">医療機関名</span>' +
+          '<span class="card-value">' + esc(r.hospital) + '</span>' +
+        '</div>' +
+        '<div class="card-row">' +
+          '<span class="card-label">応募日</span>' +
+          '<span class="card-value" style="color:#888">' + esc(r.date) + '</span>' +
+        '</div>' +
+        '<div class="card-row">' +
+          '<span class="card-label">ステータス</span>' +
+          '<span class="card-value"><span class="badge ' + b.cls + '"><i class="ti ' + b.icon + '"></i>' + esc(r.status) + '</span></span>' +
+        '</div>' +
+        '<div class="card-actions">' +
+          '<button class="btn-detail" onclick="showDetail(' + r.no + ')"><i class="ti ti-eye"></i>詳細を見る</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }).join('');
 }
 
 /* ===== サマリー ===== */

@@ -52,6 +52,7 @@ function applyFilters() {
   });
 
   renderTable(filtered);
+  renderCards(filtered);
 }
 
 /* ===== テーブル描画 ===== */
@@ -100,6 +101,69 @@ function renderTable(rows) {
   }).join('');
 
   document.getElementById('resultCount').textContent = rows.length + '件表示中';
+}
+
+/* ===== カード描画（モバイル用） ===== */
+function renderCards(rows) {
+  var container = document.getElementById('mobileCards');
+  if (!container) return;
+
+  if (!rows.length) {
+    container.innerHTML =
+      '<div class="member-card" style="text-align:center;padding:32px 16px;color:#bbb">' +
+        '<i class="ti ti-search-off" style="font-size:32px;display:block;margin-bottom:8px;opacity:.3"></i>' +
+        '該当する請求データが見つかりませんでした' +
+      '</div>';
+    return;
+  }
+
+  var today = new Date();
+  container.innerHTML = rows.map(function (r) {
+    var b = BADGE_MAP[r.status] || { cls: 'badge-unbilled', icon: 'ti-circle' };
+    var amountStr = r.amount ? '¥' + r.amount.toLocaleString() : '—';
+    var issuedStr = r.issued || '—';
+
+    var dueCls = '';
+    if (r.due !== '—' && r.status !== '支払済み') {
+      var d = new Date(r.due.replace(/\//g, '-'));
+      if (!isNaN(d) && d <= today) dueCls = ' deadline-warn';
+    }
+
+    return (
+      '<div class="member-card">' +
+        '<div class="card-member-header">' +
+          '<div class="card-header-icon"><i class="ti ti-building-hospital"></i></div>' +
+          '<div>' +
+            '<div style="font-size:14px;font-weight:700;color:var(--ink)">' + esc(r.client) + '</div>' +
+            '<div style="font-size:11px;color:#888">No.' + r.no + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="card-row">' +
+          '<span class="card-label">案件名</span>' +
+          '<span class="card-value">' + esc(r.job) + '</span>' +
+        '</div>' +
+        '<div class="card-row">' +
+          '<span class="card-label">請求金額</span>' +
+          '<span class="card-value"><span class="amount">' + amountStr + '</span></span>' +
+        '</div>' +
+        '<div class="card-row">' +
+          '<span class="card-label">請求日</span>' +
+          '<span class="card-value" style="color:#888">' + esc(issuedStr) + '</span>' +
+        '</div>' +
+        '<div class="card-row">' +
+          '<span class="card-label">支払期限</span>' +
+          '<span class="card-value' + dueCls + '">' + esc(r.due) + '</span>' +
+        '</div>' +
+        '<div class="card-row">' +
+          '<span class="card-label">ステータス</span>' +
+          '<span class="card-value"><span class="badge ' + b.cls + '"><i class="ti ' + b.icon + '"></i>' + esc(r.status) + '</span></span>' +
+        '</div>' +
+        '<div class="card-actions">' +
+          '<button class="btn-invoice" onclick="issueInvoice(' + r.no + ')"><i class="ti ti-file-invoice"></i>請求書発行</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }).join('');
 }
 
 /* ===== 請求書発行（スタブ） ===== */

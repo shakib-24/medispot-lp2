@@ -74,6 +74,7 @@ function applyFilters() {
   });
 
   renderTable(filtered);
+  renderCards(filtered);
 }
 
 /* ===== テーブル描画 ===== */
@@ -129,6 +130,64 @@ function renderTable(data) {
 
   document.getElementById('resultCount').textContent = data.length + '件表示中';
   updateHeaderCounts();
+}
+
+/* ===== カード描画（モバイル用） ===== */
+function renderCards(data) {
+  var container = document.getElementById('mobileCards');
+  if (!container) return;
+
+  var isSeeker   = currentTab === 'seeker';
+  var typeLabel  = isSeeker ? '職種' : '種別';
+  var avatarIcon = isSeeker ? 'ti-user' : 'ti-building-hospital';
+
+  if (!data.length) {
+    container.innerHTML =
+      '<div class="member-card" style="text-align:center;padding:32px 16px;color:#bbb">' +
+        '<i class="ti ti-search-off" style="font-size:32px;display:block;margin-bottom:8px;opacity:.3"></i>' +
+        '該当する会員が見つかりませんでした' +
+      '</div>';
+    return;
+  }
+
+  container.innerHTML = data.map(function (m) {
+    var badgeCls   = statusBadgeClass(m.status);
+    var badgeIcon  = statusBadgeIcon(m.status);
+    var blockedCls = m.status === 'Blocked' ? ' card-blocked' : '';
+    var blockBtn   = m.status === 'Blocked'
+      ? '<button class="btn-unblock" onclick="toggleBlock(\'' + escapeHtml(m.id) + '\')"><i class="ti ti-lock-open"></i>ブロック解除</button>'
+      : '<button class="btn-block"   onclick="toggleBlock(\'' + escapeHtml(m.id) + '\')"><i class="ti ti-ban"></i>ブロック</button>';
+
+    return (
+      '<div class="member-card' + blockedCls + '">' +
+        '<div class="card-member-header">' +
+          '<div class="member-avatar"><i class="ti ' + avatarIcon + '"></i></div>' +
+          '<div>' +
+            '<div class="member-name">' + escapeHtml(m.name) + '</div>' +
+            '<div class="member-id">ID: ' + escapeHtml(m.id) + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="card-row">' +
+          '<span class="card-label">' + typeLabel + '</span>' +
+          '<span class="card-value">' + escapeHtml(m.type) + '</span>' +
+        '</div>' +
+        '<div class="card-row">' +
+          '<span class="card-label">登録日</span>' +
+          '<span class="card-value">' + escapeHtml(m.registered) + '</span>' +
+        '</div>' +
+        '<div class="card-row">' +
+          '<span class="card-label">ステータス</span>' +
+          '<span class="card-value">' +
+            '<span class="badge ' + badgeCls + '"><i class="ti ' + badgeIcon + '"></i>' + escapeHtml(m.status) + '</span>' +
+          '</span>' +
+        '</div>' +
+        '<div class="card-actions">' +
+          '<button class="btn-detail" onclick="openDetail(\'' + escapeHtml(m.id) + '\')"><i class="ti ti-pencil"></i>詳細/編集</button>' +
+          blockBtn +
+        '</div>' +
+      '</div>'
+    );
+  }).join('');
 }
 
 /* ===== ブロック切り替え ===== */

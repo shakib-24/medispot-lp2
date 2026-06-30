@@ -27,8 +27,8 @@
       <a href="admin-matchings.html"><i class="ti ti-heart-handshake"></i>マッチング管理</a>
       <a href="admin-billing.html"><i class="ti ti-credit-card"></i>請求管理</a>
     </div>
-    <div class="nav-right">
-      <!-- 通知ベル -->
+    <!-- ベル＋ハンバーガー（PC:ベルのみ表示 / モバイル:両方表示） -->
+    <div class="mobile-actions">
       <div class="notif-bell-wrap" id="notifBellWrap">
         <button class="btn-bell" id="notifBellBtn" aria-label="通知">
           <i class="ti ti-bell"></i>
@@ -43,14 +43,17 @@
           <div class="notif-dropdown-footer" id="notifFooter"></div>
         </div>
       </div>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <!-- PC専用：管理者バッジ＋ログアウト -->
+    <div class="nav-right">
       <div class="admin-badge">
         <i class="ti ti-shield-check"></i>
         <span>管理者</span>
       </div>
       <button class="btn-logout" id="logoutBtn"><i class="ti ti-logout"></i>ログアウト</button>
-    </div>
-    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
     </div>
   </div>
 </nav>

@@ -115,10 +115,30 @@ footer{background:#1a1a2e;padding:40px 32px}
 .footer-bottom{background:#111;padding:14px;text-align:center}
 .footer-bottom p{font-size:12px;color:#555}
 
+/* ===== MOBILE CARDS ===== */
+.mobile-cards{display:none}
+.member-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card-member-header{display:flex;align-items:center;gap:10px;padding-bottom:12px;margin-bottom:4px;border-bottom:2px solid var(--green-border)}
+.card-header-icon{width:36px;height:36px;border-radius:50%;background:var(--green-light);border:1px solid var(--green-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--green-dark);font-size:16px}
+.card-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0;gap:12px}
+.card-row:last-of-type{border-bottom:none}
+.card-label{font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap;flex-shrink:0}
+.card-value{font-size:13px;color:var(--ink);text-align:right;word-break:break-word}
+.card-actions{display:flex;gap:8px;margin-top:12px}
+.card-actions .btn-invoice{flex:1;justify-content:center;min-height:44px;border-radius:8px;font-size:13px}
+.result-count{padding:8px 0 4px}
+
 @media(max-width:768px){
   .hamburger{display:flex}.nav-links,.nav-right{display:none}
+  /* サマリーカード縦積み */
   .summary-grid{grid-template-columns:1fr}
+  /* ツールバー縦積み */
+  .toolbar{flex-direction:column}
+  .search-box{width:100%}
+  .select-wrap{width:100%}
+  .select-wrap select{width:100%}
+  /* テーブル→カード切り替え */
+  #tableCard{display:none}
+  .mobile-cards{display:block}
   .footer-inner{grid-template-columns:1fr}
-  thead th:nth-child(5),.thead th:nth-child(6){display:none}
-  tbody td:nth-child(5),tbody td:nth-child(6){display:none}
 }
