@@ -38,16 +38,17 @@ nav {
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
-.logo { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; flex-shrink: 0; }
 .logo .m { color: var(--pink); }
 .logo .s { color: var(--blue); }
 .logo-sub { font-size: 10px; color: #aaa; margin-left: 4px; white-space: nowrap; }
 
 .nav-links { display: flex; gap: 20px; font-size: 13px; font-weight: 500; color: #555; }
-.nav-links a { display: flex; align-items: center; gap: 4px; transition: color .2s; }
+.nav-links a { display: flex; align-items: center; gap: 4px; transition: color .2s; white-space: nowrap; }
 .nav-links a i { font-size: 15px; }
 .nav-links a:hover,
 .nav-links a.active { color: var(--green); font-weight: 700; }
@@ -486,7 +487,7 @@ footer { background: #1a1a2e; padding: 40px 32px; }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .hamburger { display: flex; }
+  .hamburger { display: flex; margin-left: auto; }
   .nav-links, .nav-right { display: none; }
 
   .welcome-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
