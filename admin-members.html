@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot Admin - 会員管理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/admin-members.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="admin-home.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <div class="nav-links">
+      <a href="admin-home.html"><i class="ti ti-layout-dashboard"></i>ダッシュボード</a>
+      <a href="admin-members.html" class="active"><i class="ti ti-users"></i>会員管理</a>
+      <a href="admin-jobs.html"><i class="ti ti-briefcase"></i>求人管理</a>
+      <a href="admin-payments.html"><i class="ti ti-credit-card"></i>決済管理</a>
+    </div>
+    <div class="nav-right">
+      <div class="admin-badge">
+        <i class="ti ti-shield-check"></i>
+        <span>管理者</span>
+      </div>
+      <button class="btn-logout" id="logoutBtn"><i class="ti ti-logout"></i>ログアウト</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="admin-home.html"><i class="ti ti-layout-dashboard"></i>ダッシュボード</a>
+  <a href="admin-members.html" class="active"><i class="ti ti-users"></i>会員管理</a>
+  <a href="admin-jobs.html"><i class="ti ti-briefcase"></i>求人管理</a>
+  <a href="admin-payments.html"><i class="ti ti-credit-card"></i>決済管理</a>
+  <div class="mobile-user"><i class="ti ti-shield-check"></i><span>管理者</span></div>
+  <button class="btn-logout" id="logoutBtnMobile"><i class="ti ti-logout"></i>ログアウト</button>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="wrap">
+    <div class="page-header-inner">
+      <div>
+        <p class="page-label">Member Management</p>
+        <h1>会員管理</h1>
+      </div>
+      <div class="stats-row">
+        <div class="stat-chip">
+          <i class="ti ti-users"></i>
+          合計 <strong id="totalCount">0</strong> 名
+        </div>
+        <div class="stat-chip stat-active">
+          <i class="ti ti-circle-check"></i>
+          Active <strong id="activeCount">0</strong>
+        </div>
+        <div class="stat-chip stat-blocked">
+          <i class="ti ti-ban"></i>
+          Blocked <strong id="blockedCount">0</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+
+    <!-- タブ -->
+    <div class="tabs">
+      <button class="tab active" id="tabSeeker" onclick="switchTab('seeker')">
+        <i class="ti ti-stethoscope"></i>
+        求職者
+        <span class="tab-count" id="seekerCount">5</span>
+      </button>
+      <button class="tab" id="tabEmployer" onclick="switchTab('employer')">
+        <i class="ti ti-building-hospital"></i>
+        求人者
+        <span class="tab-count" id="employerCount">3</span>
+      </button>
+    </div>
+
+    <!-- 検索・フィルター -->
+    <div class="toolbar">
+      <div class="search-box">
+        <i class="ti ti-search"></i>
+        <input type="text" id="searchInput" placeholder="名前・施設名・職種で検索..." oninput="applyFilters()">
+      </div>
+      <div class="select-wrap">
+        <select id="statusFilter" onchange="applyFilters()">
+          <option value="">すべてのステータス</option>
+          <option value="Active">Active</option>
+          <option value="Blocked">Blocked</option>
+          <option value="審査中">審査中</option>
+        </select>
+        <i class="ti ti-chevron-down"></i>
+      </div>
+    </div>
+
+    <!-- テーブル -->
+    <div class="card">
+      <div class="table-wrap">
+        <table id="memberTable">
+          <thead>
+            <tr>
+              <th>名前 / 施設名</th>
+              <th id="colType">職種</th>
+              <th>登録日</th>
+              <th>ステータス</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+          </tbody>
+        </table>
+      </div>
+      <p class="result-count" id="resultCount"></p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+      <p>医療資格者と医療機関をつなぐ<br>スポット求人マッチングサービス</p>
+    </div>
+    <div class="footer-links">
+      <h4>管理メニュー</h4>
+      <ul>
+        <li>ダッシュボード</li>
+        <li>会員管理</li>
+        <li>求人管理</li>
+        <li>決済管理</li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>サポート</h4>
+      <ul>
+        <li>よくある質問</li>
+        <li>お問い合わせ</li>
+        <li>利用規約</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 MediSpot（メディスポット）. All rights reserved.</p></div>
+
+<script src="js/admin-members.js"></script>
+</body>
+</html>

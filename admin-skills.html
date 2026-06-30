@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSpot Admin - 職種・スキル管理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/admin-skills.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="admin-home.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 36 36">
+        <rect x="14" y="2" width="8" height="32" rx="4" fill="#FF6B9D"/>
+        <rect x="2" y="14" width="32" height="8" rx="4" fill="#4BB8E8"/>
+      </svg>
+      <span><span class="m">Medi</span><span class="s">Spot</span></span>
+      <span class="logo-sub">医療の出会いに、安心を。</span>
+    </a>
+    <div class="nav-links">
+      <a href="admin-home.html"><i class="ti ti-layout-dashboard"></i>ダッシュボード</a>
+      <a href="admin-members.html"><i class="ti ti-users"></i>会員管理</a>
+      <a href="admin-matchings.html"><i class="ti ti-heart-handshake"></i>マッチング管理</a>
+      <a href="admin-billing.html"><i class="ti ti-credit-card"></i>請求管理</a>
+    </div>
+    <div class="nav-right">
+      <div class="admin-badge">
+        <i class="ti ti-shield-check"></i>
+        <span>管理者</span>
+      </div>
+      <button class="btn-logout" id="logoutBtn"><i class="ti ti-logout"></i>ログアウト</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="admin-home.html"><i class="ti ti-layout-dashboard"></i>ダッシュボード</a>
+  <a href="admin-members.html"><i class="ti ti-users"></i>会員管理</a>
+  <a href="admin-matchings.html"><i class="ti ti-heart-handshake"></i>マッチング管理</a>
+  <a href="admin-billing.html"><i class="ti ti-credit-card"></i>請求管理</a>
+  <div class="mobile-user"><i class="ti ti-shield-check"></i><span>管理者</span></div>
+  <button class="btn-logout" id="logoutBtnMobile"><i class="ti ti-logout"></i>ログアウト</button>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="wrap">
+    <div class="page-header-inner">
+      <div>
+        <p class="page-label">Job Type &amp; Skill Management</p>
+        <h1>職種・スキル管理</h1>
+      </div>
+      <button class="btn-add-type" onclick="showAddTypeForm()">
+        <i class="ti ti-plus"></i>職種を追加
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- 職種追加フォーム（初期非表示） -->
+<div class="add-type-bar" id="addTypeBar" style="display:none">
+  <div class="wrap">
+    <div class="add-type-inner">
+      <i class="ti ti-stethoscope"></i>
+      <input type="text" id="newTypeName" placeholder="新しい職種名を入力..." maxlength="30">
+      <button class="btn-confirm" onclick="addJobType()"><i class="ti ti-check"></i>追加</button>
+      <button class="btn-cancel" onclick="hideAddTypeForm()"><i class="ti ti-x"></i>キャンセル</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <div class="skills-layout">
+
+      <!-- 左：職種リスト -->
+      <div class="type-panel">
+        <div class="panel-header">
+          <h2><i class="ti ti-stethoscope"></i>職種一覧</h2>
+          <span class="panel-count" id="typeCount">0</span>
+        </div>
+        <div class="type-list" id="typeList"></div>
+      </div>
+
+      <!-- 右：スキル一覧 -->
+      <div class="skill-panel" id="skillPanel">
+        <div class="panel-header">
+          <h2><i class="ti ti-certificate"></i>スキル一覧</h2>
+          <span class="selected-type-name" id="selectedTypeName">職種を選択してください</span>
+        </div>
+        <div class="skill-placeholder" id="skillPlaceholder">
+          <i class="ti ti-arrow-left"></i>
+          <p>左の職種をクリックして<br>スキルを管理してください</p>
+        </div>
+        <div class="skill-content" id="skillContent" style="display:none">
+          <div class="skill-tags" id="skillTags"></div>
+
+          <!-- スキル追加行 -->
+          <div class="add-skill-row" id="addSkillRow" style="display:none">
+            <input type="text" id="newSkillName" placeholder="スキル名を入力..." maxlength="30" onkeydown="skillInputKeydown(event)">
+            <button class="btn-confirm-sm" onclick="addSkill()"><i class="ti ti-check"></i>追加</button>
+            <button class="btn-cancel-sm" onclick="hideAddSkillRow()"><i class="ti ti-x"></i></button>
+          </div>
+
+          <button class="btn-add-skill" id="btnAddSkill" onclick="showAddSkillRow()">
+            <i class="ti ti-plus"></i>スキルを追加
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="m">Medi</span><span class="s">Spot</span></div>
+      <p>医療資格者と医療機関をつなぐ<br>スポット求人マッチングサービス</p>
+    </div>
+    <div class="footer-links">
+      <h4>管理メニュー</h4>
+      <ul>
+        <li><a href="admin-home.html">ダッシュボード</a></li>
+        <li><a href="admin-members.html">会員管理</a></li>
+        <li><a href="admin-matchings.html">マッチング管理</a></li>
+        <li><a href="admin-billing.html">請求管理</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>サポート</h4>
+      <ul><li>よくある質問</li><li>お問い合わせ</li><li>利用規約</li></ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 MediSpot（メディスポット）. All rights reserved.</p></div>
+
+<script src="js/admin-skills.js"></script>
+</body>
+</html>

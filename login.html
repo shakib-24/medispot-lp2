@@ -52,15 +52,18 @@ main{flex:1;max-width:440px;width:100%;margin:40px auto 48px;padding:0 24px}
 .demo-title{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px}
 .demo-title i{color:var(--pink)}
 .demo-desc{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6}
-.demo-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.demo-btns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .demo-btn{border-radius:10px;padding:14px 10px;text-align:center;cursor:pointer;font-family:'Noto Sans JP',sans-serif;border:none;transition:all .2s}
 .demo-btn-seeker{background:var(--pink-light);border:1.5px solid var(--pink-border)}
 .demo-btn-seeker:hover{border-color:var(--pink);background:#FFD6E7}
 .demo-btn-employer{background:var(--blue-light);border:1.5px solid var(--blue-border)}
 .demo-btn-employer:hover{border-color:var(--blue);background:#C8E8F8}
+.demo-btn-admin{background:#f1f8e9;border:1.5px solid #aed581}
+.demo-btn-admin:hover{border-color:#7cb342;background:#dcedc8}
 .demo-btn strong{display:block;font-size:13px;font-weight:700}
 .demo-btn-seeker strong{color:var(--pink-dark)}
 .demo-btn-employer strong{color:var(--blue-dark)}
+.demo-btn-admin strong{color:#558b2f}
 .demo-btn small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
  
 footer{background:#1a1a2e;padding:20px 24px;text-align:center;margin-top:auto}
@@ -117,6 +120,10 @@ footer p{font-size:11px;color:#888;margin-top:4px}
         <strong>求人者</strong>
         <small>田中総合クリニック</small>
       </button>
+      <button class="demo-btn demo-btn-admin">
+        <strong>管理者</strong>
+        <small>運営事務局</small>
+      </button>
     </div>
   </div>
 </main>
@@ -135,6 +142,11 @@ document.querySelector('.demo-btn-seeker').addEventListener('click', function ()
 document.querySelector('.demo-btn-employer').addEventListener('click', function () {
   localStorage.setItem('medispot_user', JSON.stringify({ name: '田中総合クリニック', role: 'employer' }));
   window.location.href = 'employer-home.html';
+});
+
+document.querySelector('.demo-btn-admin').addEventListener('click', function () {
+  localStorage.setItem('medispot_user', JSON.stringify({ name: '運営事務局', role: 'admin' }));
+  window.location.href = 'admin-home.html';
 });
 </script>
 </body>
